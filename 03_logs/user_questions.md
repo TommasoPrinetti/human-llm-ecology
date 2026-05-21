@@ -14,4 +14,4 @@ updated: [date]
 | — | — | — | — | — |
 
 ### Type classification
-See `01_llm_realm/06_research_tendencies/MASTER_OMEN.md` for the full type taxonomy and repetition tracker.
+See `01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md` for the full type taxonomy and repetition tracker.

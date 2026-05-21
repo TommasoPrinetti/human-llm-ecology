@@ -24,8 +24,8 @@ const isForce = process.argv.includes("--force");
 const paths = {
   blueprint: resolve(root, "02_user_realm/RESEARCH_BLUEPRINT.md"),
   config:    resolve(root, "00_system/REALM_CONFIGURATION.md"),
-  omen:      resolve(root, "01_llm_realm/06_research_tendencies/MASTER_OMEN.md"),
-  omenTemplate: resolve(root, "01_llm_realm/06_research_tendencies/MASTER_OMEN_TEMPLATE.md"),
+  aggregator:      resolve(root, "01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md"),
+  aggregatorTemplate: resolve(root, "01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR_TEMPLATE.md"),
 };
 
 const cliLaunch = {
@@ -342,13 +342,13 @@ preferred_llm_cli: "${preferredCli}"
   writeFileSync(paths.blueprint, blueprint);
   writeFileSync(paths.config, config);
 
-  let omenCreated = false;
-  if (!existsSync(paths.omen) && existsSync(paths.omenTemplate)) {
-    const omen = readFileSync(paths.omenTemplate, "utf8")
+  let aggCreated = false;
+  if (!existsSync(paths.aggregator) && existsSync(paths.aggregatorTemplate)) {
+    const agg = readFileSync(paths.aggregatorTemplate, "utf8")
       .replace("created: [date]", `created: ${today}`)
       .replace("updated: [date]", `updated: ${today}`);
-    writeFileSync(paths.omen, omen);
-    omenCreated = true;
+    writeFileSync(paths.aggregator, agg);
+    aggCreated = true;
   }
 
   // ── success ───────────────────────────────────────────────────────────────
@@ -357,7 +357,7 @@ preferred_llm_cli: "${preferredCli}"
   output.write(`\n  ${c.bGreen}${c.bold}✦ Onboarding files written${c.reset}\n\n`);
   output.write(`  ${dim("─")} ${c.cyan}${paths.blueprint}${c.reset}\n`);
   output.write(`  ${dim("─")} ${c.cyan}${paths.config}${c.reset}\n`);
-  if (omenCreated) output.write(`  ${dim("─")} ${c.cyan}${paths.omen}${c.reset}\n`);
+  if (aggCreated) output.write(`  ${dim("─")} ${c.cyan}${paths.aggregator}${c.reset}\n`);
   output.write("\n");
 
   const launch = cliLaunch[preferredCli] || cliLaunch.Other;

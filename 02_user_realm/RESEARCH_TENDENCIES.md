@@ -1,5 +1,5 @@
 ---
-type: tendencies
+type: research_tendencies
 agent: Lucrezio
 created: [date]
 updated: [date]
@@ -20,4 +20,4 @@ updated: [date]
 
 ---
 
-*Note: This file is maintained by Lucrezio. The master accumulation and repetition tracker lives at `01_llm_realm/06_research_tendencies/MASTER_OMEN.md`.*
+*Note: This file is maintained by Lucrezio. The master accumulation and repetition tracker lives at `01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md`.*

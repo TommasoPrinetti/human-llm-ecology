@@ -1,3 +1,10 @@
+---
+type: adversarial_checklist
+agent: Tacito
+created: 2026-05-21
+updated: 2026-05-21
+---
+
 # Tacito Adversarial Checklist
 
 ## Mandatory — process before every Mailbox note

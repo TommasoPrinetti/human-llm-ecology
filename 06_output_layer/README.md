@@ -1,11 +1,11 @@
 ---
-type: mirror_index
+type: output_layer_index
 agent: reserved
 created: [date]
 updated: [date]
 ---
 
-# Mirror — User-Facing Output Layer
+# Output Layer — User-Facing Export Channels
 
 This folder is reserved for future output channels: HTML export, Telegram integration, or other user-facing formats.
 

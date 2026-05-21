@@ -17,7 +17,7 @@ Use this file only to choose the path. Use the skill/protocol/template for detai
 ## Triggers
 |---|---|---|
 | New project | Varro + Human | `00_system/ONBOARDING.md` |
-| First Root Vault mapping | Cicero | `00_system/INITIAL_TRANSLATION_PROTOCOL.md` |
+| First Root Vault mapping | Cicero | `00_system/INITIAL_MAPPING_PROTOCOL.md` |
 | New source batch | Cicero | `00_system/INCOMING_SOURCE_PROTOCOL.md` |
 | Research question | Lucrezio | `03_logs/user_questions.md` + `03_logs/structured_research_needs/` |
 | Evidence answer | Any agent | indexes → back-search → L1/L2 answer |

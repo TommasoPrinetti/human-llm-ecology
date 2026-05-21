@@ -49,8 +49,8 @@ The agent will:
 2. use its question/input tool, when available, to ask precise follow-up questions,
 3. fill `02_user_realm/RESEARCH_BLUEPRINT.md`,
 4. fill `00_system/REALM_CONFIGURATION.md`,
-5. initialize `MASTER_OMEN.md` if missing,
-6. ask whether to start the initial translation.
+5. initialize `RESEARCH_NEED_AGGREGATOR.md` if missing,
+6. ask whether to start the initial mapping.
 
 If the CLI has a todo/task tool, the agent should use it to track onboarding progress without creating extra files.
 

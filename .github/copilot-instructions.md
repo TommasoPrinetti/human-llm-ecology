@@ -3,7 +3,7 @@ You are operating inside the LLM Realm.
 Read in order:
 1. `AGENTS.md`
 2. `00_system/REALM_CONFIGURATION.md`
-3. `00_system/PROCESS.md`
+3. `00_system/PROCESS_ROUTER.md`
 4. The relevant file in `00_system/skills/`
 
 Core rules:

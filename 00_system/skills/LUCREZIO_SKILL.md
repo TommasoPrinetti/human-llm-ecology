@@ -23,7 +23,7 @@ Read the Root Vault and the Realm freely, never modify either layer. Logs and te
 1. Append the raw question to `03_logs/user_questions.md`.
 2. Create one structured research need only if the question requires follow-up retrieval or indexing.
 3. Check recent source intake for relevance.
-4. Update the Master Omen/tendency tracker when available.
+4. Update the Research Need Aggregator / tendency tracker when available.
 5. Register or update a tendency only when repetition is meaningful.
 6. Send one re-index signal to Cicero if the Realm needs to reorganize.
 

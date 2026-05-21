@@ -6,7 +6,7 @@ LLM Realm is a research framework for LLM agents working with large, evolving so
 ## First Read
 1. `AGENTS.md`
 2. `00_system/REALM_CONFIGURATION.md`
-3. `00_system/PROCESS.md`
+3. `00_system/PROCESS_ROUTER.md`
 4. The relevant skill in `00_system/skills/`
 
 If `preferred_llm_cli` is present in `00_system/REALM_CONFIGURATION.md`, adapt onboarding instructions to that CLI when useful. The framework behavior stays the same across CLIs.
@@ -18,9 +18,9 @@ If either file still contains placeholders such as `[path]`, `[project name]`, `
 1. Read `00_system/ONBOARDING.md`.
 2. Use the CLI's question/input tool if available to ask the researcher only for missing or underspecified onboarding information.
 3. Fill `02_user_realm/RESEARCH_BLUEPRINT.md` and `00_system/REALM_CONFIGURATION.md`.
-4. Initialize `01_llm_realm/06_research_tendencies/MASTER_OMEN.md` from the template if missing.
-5. Ask the researcher whether to start the initial translation.
-6. If yes, run the first mapping pass through `00_system/INITIAL_TRANSLATION_PROTOCOL.md`.
+4. Initialize `01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md` from the template if missing.
+5. Ask the researcher whether to start the initial mapping.
+6. If yes, run the first mapping pass through `00_system/INITIAL_MAPPING_PROTOCOL.md`.
 
 During onboarding, use the CLI's todo/task tool if available to track progress. Do not create a Markdown todo file unless the user asks for one.
 
@@ -36,7 +36,7 @@ Do the smallest Realm action that satisfies the task. Do not create a fragment, 
 | `03_logs/` | Questions, structured research needs, source intake, external queries |
 | `04_mailbox/` | Outward-facing notes to the researcher |
 | `05_agent_reports/` | Reports and internal analytic memos |
-| `06_mirror/` | Reserved output layer |
+| `06_output_layer/` | Reserved output layer |
 
 Files in `01_llm_realm/archive/` are historical. Do not use archived files as active instructions.
 

@@ -18,8 +18,8 @@ updated: [date]
   02_source_maps/                Per-source and per-batch source maps (Cicero)
   03_concept_indexes/            Thematic concept indexes (Cicero)
   04_evidence_fragments/         Small verbatim quotes with source links (Cicero)
-  05_backsearch_instructions/    Protocols for Root Vault back-search and serendipity
-   06_research_tendencies/        Master omen document for tendency detection (Lucrezio)
+  05_backsearch_protocols/        Protocols for Root Vault back-search and serendipity
+  06_research_tendencies/        Research need aggregator for tendency detection (Lucrezio)
    07_serendipity_links/          Cross-source and cross-concept serendipity connections (Tacito)
   archive/                       Deprecated indexes, archived by Varro
 ```
@@ -37,7 +37,7 @@ updated: [date]
 | — | — | — | — |
 
 ## Research tendencies (from Lucrezio)
-See `06_research_tendencies/MASTER_OMEN.md` for the full accumulation and repetition tracker.
+See `06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md` for the full accumulation and repetition tracker.
 
 ## Source intake
 See `03_logs/source_intake_log.md` for new Root Vault batches and retained external sources.

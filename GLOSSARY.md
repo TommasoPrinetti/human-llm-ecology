@@ -22,7 +22,7 @@
 
 **Mailbox** — `04_mailbox/inbox.md`. Where Tacito writes leads, warnings, contradictions, and serendipitous clues for the researcher.
 
-**Master Omen** — `01_llm_realm/06_research_tendencies/MASTER_OMEN.md`. Lucrezio's aggregation of all research needs, used to detect recurring patterns.
+**Research Need Aggregator** — `01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md`. Lucrezio's aggregation of all research needs, used to detect recurring patterns.
 
 **Moral division of labour** (Hughes) — The process by which professions collectively manage guilty knowledge through occupational norms, specialised vocabularies, and tacit coordination.
 

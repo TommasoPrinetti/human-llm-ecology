@@ -12,7 +12,7 @@ Reduced the active instruction surface so each file has one job.
 
 ## Changes
 - `AGENTS.md` is now the single operating entry point.
-- `00_system/PROCESS.md` is now a compact router.
+- `00_system/PROCESS_ROUTER.md` is now a compact router.
 - `01_llm_realm/01_metadata/HEADER_TEMPLATE.md` is modular instead of universal.
 - Role skills in `00_system/skills/` were shortened to role-specific procedures.
 - Onboarding, source intake, initial mapping, back-search, serendipity, source map, concept index, evidence fragment, and memo templates were tightened.
@@ -30,7 +30,7 @@ Do the smallest valid Realm action. Do not create a fragment, memo, mailbox note
 ## Follow-up Fixes
 - Added onboarding gate before mapping, indexing, answering, or intake.
 - Marked archived files as historical, not active instructions.
-- Added Master Omen initialization rule.
+- Added Research Need Aggregator initialization rule.
 - Generalized Tacito's silent-material check.
 - Added onboarding smoke test.
 

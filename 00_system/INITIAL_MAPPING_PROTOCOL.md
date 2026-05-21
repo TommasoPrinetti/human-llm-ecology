@@ -1,4 +1,11 @@
-# Initial Translation Protocol
+---
+type: initial_mapping_protocol
+agent: Cicero
+created: 2026-05-21
+updated: 2026-05-21
+---
+
+# Initial Mapping Protocol
 
 Use when the Realm has not yet mapped the Root Vault.
 
