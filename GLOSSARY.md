@@ -16,15 +16,11 @@
 
 **Evidence type** — Whether a claim is: primary (direct source material), processed (summary/cluster), interpretive (hypothesis/pattern), or external (logged outside source).
 
-**Guilty knowledge** (Hughes, 1984) — Forms of knowing and doing that appear unserious, embarrassing, unethical, or dangerous to outsiders. A key theoretical frame for understanding concealment of AI use.
-
 **L1 / L2** — See *Evidence level*.
 
 **Mailbox** — `04_mailbox/inbox.md`. Where Tacito writes leads, warnings, contradictions, and serendipitous clues for the researcher.
 
 **Research Need Aggregator** — `01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md`. Lucrezio's aggregation of all research needs, used to detect recurring patterns.
-
-**Moral division of labour** (Hughes) — The process by which professions collectively manage guilty knowledge through occupational norms, specialised vocabularies, and tacit coordination.
 
 **`.now`** — The convention that every file records `created: [date]` at creation and `updated: [date]` on every edit. Enables Varro's cleanup cycle.
 
@@ -35,8 +31,6 @@
 **Re-index** — A Cicero pass triggered by Lucrezio when a tendency reaches count ≥ 3. The Realm reorganises around the detected pattern.
 
 **Root Vault** — The protected source collection. Never modified by agents. All fragments link back to it or to a registered source.
-
-**Shadow AI** — The use of personal AI accounts for professional work, driven underground by organisational policies that forbid official AI use.
 
 **Skill** — An agent skill file (e.g., `00_system/skills/CICERO_SKILL.md`) that constrains an agent's actions, tools, and workflows.
 
