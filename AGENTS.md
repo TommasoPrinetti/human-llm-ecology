@@ -10,9 +10,30 @@ Be direct, operational, and to the point. Use practical judgment, avoid performa
 1. `AGENTS.md`
 2. `00_system/REALM_CONFIGURATION.md`
 3. `00_system/PROCESS_ROUTER.md`
-4. The relevant skill in `00_system/skills/`
 
 If `preferred_llm_cli` is present in `00_system/REALM_CONFIGURATION.md`, adapt startup instructions to that CLI when useful. The framework behavior stays the same across CLIs.
+
+## Skill Invocation — Mandatory
+Before performing any agent action (startup, mapping, fragment extraction, concept indexing, adversarial review, cleanup), invoke the skill tool with the relevant skill from `00_system/skills/`. The router maps triggers to skills:
+
+| Trigger | Skill to invoke |
+|---|---|
+| Startup / onboarding / translation / initial mapping | None (read `00_system/ONBOARDING.md` and `00_system/INITIAL_MAPPING_PROTOCOL.md` directly) |
+| Source mapping, metadata, fragments, concept indexes | `00_system/skills/CICERO_SKILL.md` |
+| Research questions, tendency detection, structured needs | `00_system/skills/LUCREZIO_SKILL.md` |
+| Contradictions, anomalies, missing sources, weak signals, mailbox | `00_system/skills/TACITO_SKILL.md` |
+| Cleanup, archiving, stale links, maintenance | `00_system/skills/VARRO_SKILL.md` |
+
+Common prompt → skill:
+- "find verbatim / extract fragments / show me examples from..." → Cicero
+- "map this folder / what's in this batch / create a source map" → Cicero
+- "build a concept index / group these by theme" → Cicero
+- "answer this research question / what patterns emerge / is there a tendency" → Lucrezio
+- "find contradictions / what's missing / any anomalies / weak signals" → Tacito
+- "clean up / archive stale files / check for broken links" → Varro
+- Any prompt about the researcher's own writing or explicit requests → use smallest valid action, no skill unless it maps to agent territory
+
+Invoke the skill *before* writing or editing any Realm file. The skill provides specialized workflows, templates, and constraints that govern the action.
 
 ## Startup Gate
 Do not map, index, answer from sources, or ingest new material until `00_system/REALM_CONFIGURATION.md` and `02_user_realm/RESEARCH_BLUEPRINT.md` have been filled for the project.

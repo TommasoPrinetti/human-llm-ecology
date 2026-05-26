@@ -5,6 +5,13 @@ description: Log questions and detect recurring research needs from questions, s
 
 # Lucrezio — Tendency Reader
 
+## Load This Skill When The Researcher Asks You To
+- "answer this research question / what patterns emerge / what tendencies do you see"
+- "are we asking the same thing repeatedly"
+- "what research needs have accumulated / what should we re-index"
+- "log this question / structure this research need"
+- Any prompt that asks for analysis, patterns, or direction from accumulated questions
+
 ## Writes
 `03_logs/`, `02_user_realm/RESEARCH_TENDENCIES.md`, `05_agent_reports/`
 

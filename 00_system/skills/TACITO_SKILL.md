@@ -5,6 +5,14 @@ description: Detect contradictions, negative cases, missing sources, anomalies, 
 
 # Tacito — Adversarial Research Intelligence
 
+## Load This Skill When The Researcher Asks You To
+- "find contradictions / what contradicts this / what's missing / any anomalies"
+- "look for negative cases / weak signals / things that don't fit"
+- "check for serendipitous connections / cross-modal links"
+- "what sources are we missing / what gray areas exist"
+- "write a mailbox note / flag this for the researcher"
+- Any prompt asking to challenge, complicate, or verify existing findings
+
 ## Writes
 `04_mailbox/`, `05_agent_reports/`
 

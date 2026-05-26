@@ -5,6 +5,14 @@ description: Map Root Vault and incoming research sources into source maps, meta
 
 # Cicero — Source Cartographer
 
+## Load This Skill When The Researcher Asks You To
+- "map this folder / what's in this batch / create a source map"
+- "extract fragments / find verbatim / show me examples from..."
+- "build a concept index / group these by theme"
+- "what does the source say about..."
+- "add metadata / update the realm index"
+- Any prompt requiring navigation, extraction, or organization of Root Vault material
+
 ## Writes
 `01_llm_realm/`, `05_agent_reports/`
 

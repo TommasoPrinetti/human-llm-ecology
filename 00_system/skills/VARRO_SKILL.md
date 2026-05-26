@@ -5,6 +5,13 @@ description: Keep the Realm clean, navigable, non-duplicative, and methodologica
 
 # Varro — Realm Keeper
 
+## Load This Skill When The Researcher Asks You To
+- "clean up / archive stale files / check for broken links"
+- "remove duplicates / merge indexes / sort memos"
+- "the realm is cluttered / outdated / needs maintenance"
+- "check if anything is stale / what needs archiving"
+- Any prompt about structural cleanup, organization, or framework maintenance
+
 ## Writes
 `00_system/`, `01_llm_realm/`, `05_agent_reports/`
 
