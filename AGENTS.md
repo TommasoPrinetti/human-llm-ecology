@@ -30,7 +30,7 @@ If either file still contains required placeholders such as `[path]`, `[project 
 8. Check that the draft has been fully translated: every useful project detail, artifact reference, path, policy, and inferred mapping target must either appear in the filled files or be explicitly marked as deferred with a reason.
 9. Initialize `01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md` from the template if missing.
 10. Run the first mapping pass through `00_system/INITIAL_MAPPING_PROTOCOL.md`.
-11. Update the startup todo list as each step completes. In the final response, report the completed checklist and a `Next Steps` section with 3 to 5 concrete actions the researcher can ask for next.
+11. Update the startup todo list as each step completes. Use `00_system/STARTUP_REPORT_TEMPLATE.md` for the final response, including the completed checklist and a `Next Steps` section with 3 to 5 concrete actions the researcher can ask for next.
 
 During startup, do not stop after a navigational source map unless the setup draft has already been translated, `setup_status` has been moved to `realm_started`, and the startup checklist is complete. Do not create a Markdown todo file unless the user asks for one.
 

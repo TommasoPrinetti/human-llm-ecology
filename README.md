@@ -25,7 +25,7 @@ Open the folder with Codex, Claude Code, Opencode, or another CLI agent that can
 Optional fast start:
 
 ```bash
-npm run llm-onboard
+npm run setup
 ```
 
 This opens a short terminal questionnaire and writes a first draft of:
@@ -64,6 +64,16 @@ The prompt `Read AGENTS.md and start the Realm.` is permission to complete start
 The agent should not stop after only creating a source map. Startup is complete only after the setup draft has been translated into the blueprint/config, `setup_status` is marked `realm_started`, the startup checklist is complete, and the first mapping pass has run or is explicitly blocked.
 
 The startup report should end with concrete next steps, such as extracting first evidence fragments, creating the first concept index, asking a source-grounded research question, deepening a specific source map, or running a contradiction/negative-case pass.
+
+Example next prompts after startup:
+
+```txt
+Extract the first evidence fragments from the mapped source batch.
+Build a concept index for the strongest recurring theme.
+Answer my first research question using only L1 evidence.
+Deepen the source map for [folder or source type].
+Run a Tacito contradiction and negative-case pass on the initial map.
+```
 
 ## Daily Use
 

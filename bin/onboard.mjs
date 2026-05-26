@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
+import { spawnSync } from "node:child_process";
 
 // ── ANSI colors (zero-dependency) ────────────────────────────────────────────
 const noColor = process.argv.includes("--no-color") || process.env.NO_COLOR;
@@ -42,6 +43,17 @@ function splitList(v) { return v.split(/[,;\n]/).map(i => i.trim()).filter(Boole
 function yamlList(items, fb = "[not specified]") { return (items.length ? items : [fb]).map(i => `- ${i}`).join("\n"); }
 function markdownContinuation(s) { return s.split("\n").map(line => `  ${line}`).join("\n"); }
 function oneLine(s) { return s.replace(/\s+/g, " ").trim(); }
+function isUrl(s) { return /^https?:\/\//i.test(s); }
+function artifactAccessNote(artifacts, externalPolicy) {
+  if (!artifacts.some(isUrl)) return "";
+  if (externalPolicy === "closed") {
+    return "\n- URL access note: URLs were recorded for context, but external access is closed. Agents must not fetch them unless policy changes.\n";
+  }
+  if (externalPolicy === "explicit_request_only") {
+    return "\n- URL access note: URLs were recorded for context. Agents must ask before fetching them.\n";
+  }
+  return "\n- URL access note: URLs may be fetched and logged under the configured external source policy.\n";
+}
 
 // ── display ──────────────────────────────────────────────────────────────────
 function divider(ch = "─") { output.write(c.dim + ch.repeat(W - 1) + c.reset + "\n"); }
@@ -235,8 +247,9 @@ async function main() {
   if (!noColor) output.write("\x1b[2J\x1b[H");
 
   if (process.argv.includes("--help") || process.argv.includes("-h")) {
-    output.write(`\n  ${bold("llm-realm onboard")}\n\n`);
-    output.write(`  ${dim("Usage:")} npm run llm-onboard [--force] [--no-color]\n`);
+    output.write(`\n  ${bold("llm-realm setup")}\n\n`);
+    output.write(`  ${dim("Usage:")} npm run setup [--force] [--no-color]\n`);
+    output.write(`  ${dim("       ")} npm run llm-onboard [--force] [--no-color]\n`);
     output.write(`  ${dim("       ")} node bin/onboard.mjs [--force] [--no-color]\n\n`);
     output.write(`  ${dim("Flags:")}\n`);
     output.write(`    --force     Overwrite existing setup data\n`);
@@ -293,6 +306,9 @@ ${c.bCyan}██╗  ██╗      ██╗     ██╗     ███╗   �
     "explicit_request_only",
   );
   rl = createRL();
+  if (externalPolicy === "closed" && projectArtifacts.some(isUrl)) {
+    output.write("\n" + c.yellow + "Note:" + c.reset + " You listed URLs, but external access is closed. Agents will record those URLs but must not fetch them.\n");
+  }
 
   // ── Step 4: CLI (arrow keys + note) ───────────────────────────────────────
   step(4, 4, "LLM CLI");
@@ -337,6 +353,7 @@ ${markdownContinuation(projectDescription || "[project description]")}
 
 ## Project Artifacts
 ${yamlList(projectArtifacts, "No additional URLs or file paths provided during fast setup.")}
+${artifactAccessNote(projectArtifacts, externalPolicy)}
 
 ## Sources
 - Root Vault path: ${rootVaultPath || "[path]"}
@@ -442,8 +459,22 @@ preferred_llm_cli: "${preferredCli}"
   const launch = cliLaunch[preferredCli] || cliLaunch.Other;
   output.write(`  ${bold("Next:")}\n\n`);
   if (launch.command) {
-    output.write(`  1. ${bold("Run")} ${c.bGreen}\`${launch.command}\`${c.reset} from this folder.\n`);
-    output.write(`  2. ${bold("Say:")} ${c.bGreen}${launch.prompt}${c.reset}\n`);
+    output.write(`  1. ${bold("Open")} ${c.bGreen}\`${launch.command}\`${c.reset} from this folder.\n`);
+    output.write(`  2. ${bold("Send:")} ${c.bGreen}${launch.prompt}${c.reset}\n\n`);
+    if (input.isTTY) {
+      const launchRl = createRL();
+      const openNow = (await ask(launchRl, `Press Enter to open ${preferredCli} now, or type n to skip`, "")).toLowerCase();
+      launchRl.close();
+      if (!["n", "no"].includes(openNow)) {
+        output.write("\n" + dim(`Opening ${preferredCli} in ${root}...\n`));
+        const result = spawnSync(launch.command, { cwd: root, stdio: "inherit", shell: true });
+        if (result.error || result.status) {
+          output.write(c.yellow + "\nCould not open the selected CLI automatically. Run this manually:\n" + c.reset);
+          output.write(`  ${launch.command}\n`);
+          output.write(`  ${launch.prompt}\n`);
+        }
+      }
+    }
   } else {
     output.write(`  ${c.bGreen}${launch.prompt}${c.reset}\n`);
   }

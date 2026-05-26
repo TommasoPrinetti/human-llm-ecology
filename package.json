@@ -7,11 +7,14 @@
     "node": ">=16.0.0"
   },
   "scripts": {
+    "setup": "node bin/onboard.mjs",
     "onboard": "node bin/onboard.mjs",
     "llm-onboard": "node bin/onboard.mjs",
+    "realm-setup": "node bin/onboard.mjs",
     "llm-realm-onboard": "node bin/onboard.mjs"
   },
   "bin": {
+    "llm-realm-setup": "bin/onboard.mjs",
     "llm-realm-onboard": "bin/onboard.mjs",
     "llm-onboard": "bin/onboard.mjs"
   }
