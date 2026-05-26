@@ -5,11 +5,11 @@ import { resolve } from "node:path";
 const root = process.cwd();
 const requiredFiles = [
   "AGENTS.md",
-  "00_system/REALM_CONFIGURATION.md",
-  "00_system/ONBOARDING.md",
-  "00_system/STARTUP_REPORT_TEMPLATE.md",
+  "00_system/instructions/REALM_CONFIGURATION.md",
+  "00_system/instructions/ONBOARDING.md",
+  "00_system/templates/STARTUP_REPORT_TEMPLATE.md",
   "02_user_realm/RESEARCH_BLUEPRINT.md",
-  "01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md",
+  "03_logs/research_tendencies/RESEARCH_NEED_AGGREGATOR.md",
 ];
 
 const failures = [];
@@ -26,7 +26,7 @@ function readRel(path) {
 
 for (const file of requiredFiles) readRel(file);
 
-const config = readRel("00_system/REALM_CONFIGURATION.md");
+const config = readRel("00_system/instructions/REALM_CONFIGURATION.md");
 const blueprint = readRel("02_user_realm/RESEARCH_BLUEPRINT.md");
 const startupText = `${config}\n${blueprint}`;
 

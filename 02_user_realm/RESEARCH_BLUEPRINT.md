@@ -29,12 +29,12 @@ setup_status: cli_started
 ## Method And Evidence
 - Methods: [inferred during startup]
 - Claims require source paths.
-- L2 clues require back-search before reporting.
+- L2 clues require Checker verification before reporting.
 - External sources must stay labeled external unless moved into the Root Vault.
 - External source policy: no
 
 ## Outputs
-- Start with source maps and evidence-grounded answers unless the researcher requests another output.
+- Start with folder mirror indexes and evidence-grounded answers unless the researcher requests another output.
 
 ## Blind Spots
 - [identified during startup]

@@ -5,7 +5,7 @@ Use when several fragments share a concept.
 ```md
 ---
 type: concept_index
-agent: Cicero
+sub_agent: Navigator
 created: [date]
 updated: [date]
 evidence_type: processed
@@ -31,7 +31,7 @@ negative_case_status: none_found | partial | present | needs_search
 | [[fragment]] or `/root_vault/path` | [short note] | high / medium / low |
 
 ## Negative Cases
-| Fragment/source | Counter-pattern | Back-search |
+| Fragment/source | Counter-pattern | Checker status |
 |---|---|---|
 | [[fragment]] or `/root_vault/path` | [what it weakens] | pending / partial / verified |
 
@@ -40,10 +40,7 @@ negative_case_status: none_found | partial | present | needs_search
 - Contrasting: [[concept]]
 - Code changes: [reinforced / weakened / renamed / split / merged]
 
-## Memos
-- [[memo]]
-
-## Back-search
+## Checker Verification
 [what to verify before using this concept in an answer or draft]
 ```
 

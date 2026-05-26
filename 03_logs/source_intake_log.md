@@ -1,7 +1,7 @@
 ---
 type: source_intake_log
-agent: Cicero
-created: 2026-05-21
+sub_agent: Navigator
+created: 2026-05-26
 updated: 2026-05-26
 ---
 
@@ -11,7 +11,7 @@ All new Root Vault batches and retained external sources are registered here bef
 
 | Date | Batch ID | Source type | Location | Origin | Intake status | Notes |
 |---|---|---|---|---|---|---|
-| — | — | — | — | — | — | — |
+| - | - | - | - | - | - | - |
 
 ## Status Values
 - `registered`

@@ -24,14 +24,14 @@ const isForce = process.argv.includes("--force");
 
 const paths = {
   blueprint: resolve(root, "02_user_realm/RESEARCH_BLUEPRINT.md"),
-  config:    resolve(root, "00_system/REALM_CONFIGURATION.md"),
+  config:    resolve(root, "00_system/instructions/REALM_CONFIGURATION.md"),
   agents:    resolve(root, "AGENTS.md"),
   claude:    resolve(root, "CLAUDE.md"),
-  aggregator:      resolve(root, "01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md"),
-  aggregatorTemplate: resolve(root, "01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR_TEMPLATE.md"),
+  aggregator:      resolve(root, "03_logs/research_tendencies/RESEARCH_NEED_AGGREGATOR.md"),
+  aggregatorTemplate: resolve(root, "03_logs/research_tendencies/RESEARCH_NEED_AGGREGATOR_TEMPLATE.md"),
 };
 
-const startupPrompt = "Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires.";
+const startupPrompt = "Read AGENTS.md and start the Realm - translate the setup draft, fill configuration and blueprint, create folder mirror indexes, and run initial indexing. Do not stop after reading files or ask for confirmation beyond what the startup gate requires.";
 
 const cliLaunch = {
   "Claude Code": { command: "claude",   args: ["-p", startupPrompt] },
@@ -373,12 +373,12 @@ ${artifactAccessNote(projectArtifacts, externalPolicy)}
 ## Method And Evidence
 - Methods: To be inferred from the project description and source collection.
 - Claims require source paths.
-- L2 clues require back-search before reporting.
+- L2 clues require Checker verification before reporting.
 - External sources must stay labeled external unless moved into the Root Vault.
 - External source policy: ${externalPolicy}
 
 ## Outputs
-- Start with source maps and evidence-grounded answers unless the researcher requests another output.
+- Start with folder mirror indexes and evidence-grounded answers unless the researcher requests another output.
 
 ## Blind Spots
 - To be discovered during mapping.
@@ -416,7 +416,7 @@ external_logs:
   - 03_logs/source_intake_log.md
 
 claim_standard: source_link_required
-l2_policy: backsearch_required
+l2_policy: checker_required
 
 protected_paths:
   - "${sanitizeYaml(rootVaultPath || "[root_vault_path]")}"
@@ -430,8 +430,8 @@ preferred_llm_cli: "${preferredCli}"
 
 ## Notes
 - This file was initialized by the CLI setup.
-- When an agent sees setup_status: cli_started, it should start the Realm from the setup draft, mark translated setup as setup_status: realm_started, and run initial mapping unless blocked.
-- The startup agent must not stop after only creating a source map; it must translate the setup draft first and complete the startup checklist.
+- When an agent sees setup_status: cli_started, it should start the Realm from the setup draft, mark translated setup as setup_status: realm_started, and run initial indexing unless blocked.
+- The startup agent must not stop after only creating a folder index; it must translate the setup draft first and complete the startup checklist.
 - The Realm startup flow should avoid asking for scope, object, questions, methods, or outputs unless the researcher requests that detail or the missing answer blocks immediate mapping.
 - This file never grants permission to edit the Root Vault.
 `;

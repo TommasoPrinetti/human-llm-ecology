@@ -1,13 +1,13 @@
 ---
 type: research_tendencies
-agent: Lucrezio
+sub_agent: Conceptualizer
 created: [date]
 updated: [date]
 ---
 
 # Research Tendencies
 
-*Lucrezio fills this as recurring patterns emerge from questions, logs, and writing.*
+*Conceptualizer and Checker update this as recurring patterns emerge from requests, logs, and verified evidence needs.*
 
 ## Detected tendencies
 
@@ -16,8 +16,8 @@ updated: [date]
 | (none yet) | — | — | — | — |
 
 ## Archived tendencies
-*Outdated tendencies moved here by Varro.*
+*Outdated tendencies are moved here during maintenance.*
 
 ---
 
-*Note: This file is maintained by Lucrezio. The master accumulation and repetition tracker lives at `01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md`.*
+*Note: The master accumulation and repetition tracker lives at `03_logs/research_tendencies/RESEARCH_NEED_AGGREGATOR.md`.*

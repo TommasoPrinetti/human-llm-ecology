@@ -1,21 +1,17 @@
 ---
 type: agent_report_index
-agent: Varro
 created: [date]
-updated: [date]
+updated: 2026-05-26
 ---
 
 # Agent Reports
 
-This folder contains maintenance reports, intelligence summaries, and cleanup logs produced by Varro, Tacito, Lucrezio, and Cicero.
-It also contains analytic memos in `memos/`, which store the Realm's internal analytic memory.
+This folder contains Packer reports, Checker verification notes, and maintenance reports.
 
 ## Purpose
-- Varro logs every structural change to the Realm
-- Tacito logs intelligence patterns and cross-archive connections
-- Lucrezio logs tendency detection and re-index signals
-- Cicero logs mapping completion and extraction reports
-- Agents write analytic memos when a pattern, comparison, contradiction, or category needs to persist without becoming a final claim
+- Packer writes coherent reports answering user requests from retrieved evidence
+- Checker writes verification notes for quotes, claims, source paths, and index maintenance
+- Navigator may write raw evidence packets here when retrieval is too large or important to pass inline
 - All reports are timestamped for traceability
 
 ## Report log

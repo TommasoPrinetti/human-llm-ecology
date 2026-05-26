@@ -5,15 +5,19 @@ Use for reusable evidence only.
 ```md
 ---
 type: evidence_fragment
-agent: Cicero
+sub_agent: Navigator
 created: [date]
 updated: [date]
 source: /root_vault/source_batch_NNN/[file]
+root_path: /root_vault/source_batch_NNN/[file]
+root_rel_path: source_batch_NNN/[file]
+realm_mirror_path: 01_llm_realm/00_root_mirror/source_batch_NNN/INDEX.md
 source_type: [source type]
 evidence_type: primary | processed | interpretive | external
 evidence_level: L1 | L2
 confidence: high | medium | low
 tags: [tag1, tag2]
+keywords: [grep, friendly, terms]
 codes:
   - [optional descriptive code]
 concepts:
@@ -37,12 +41,7 @@ category: "[[Optional Category]]"
 - Contrasting: [[optional]]
 - Note: [what this reinforces, weakens, or complicates]
 
-## Serendipity
-- Type: none / anomaly / metaphor / contradiction / weak_signal / adjacent_case / negative_space
-- Relation: direct / adjacent / oppositional / speculative
-- Requires back-search: true / false
-
-## Back-search
+## Checker Verification
 [pending / partial / verified]
 ```
 

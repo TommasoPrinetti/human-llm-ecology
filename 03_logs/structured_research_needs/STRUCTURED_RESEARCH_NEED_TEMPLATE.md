@@ -1,6 +1,6 @@
 # Structured Research Need Template
 
-*Lucrezio fills one entry per user question.*
+*Conceptualizer fills one entry when a user request needs reusable search decomposition.*
 
 ```
 ---
