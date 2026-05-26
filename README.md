@@ -61,6 +61,8 @@ If the CLI has a todo/task tool, the agent should use it to track startup progre
 
 The prompt `Read AGENTS.md and start the Realm.` is permission to complete startup and run the first mapping pass. The agent should ask a question only if required setup information is missing, the Root Vault cannot be located, or external URL access needs permission.
 
+The agent should not stop after only creating a source map. Startup is complete only after the setup draft has been translated into the blueprint/config, `setup_status` is marked `realm_started`, the startup checklist is complete, and the first mapping pass has run or is explicitly blocked.
+
 ## Daily Use
 
 | Task | Path |

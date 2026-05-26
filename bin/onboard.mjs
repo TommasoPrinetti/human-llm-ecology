@@ -410,6 +410,7 @@ preferred_llm_cli: "${preferredCli}"
 ## Notes
 - This file was initialized by the CLI setup.
 - When an agent sees setup_status: cli_started, it should start the Realm from the setup draft, mark translated setup as setup_status: realm_started, and run initial mapping unless blocked.
+- The startup agent must not stop after only creating a source map; it must translate the setup draft first and complete the startup checklist.
 - The Realm startup flow should avoid asking for scope, object, questions, methods, or outputs unless the researcher requests that detail or the missing answer blocks immediate mapping.
 - This file never grants permission to edit the Root Vault.
 `;

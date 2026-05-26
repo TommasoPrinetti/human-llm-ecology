@@ -9,18 +9,20 @@ updated: 2026-05-21
 
 Use once for a new research Realm.
 
-The agent starts this protocol automatically when `AGENTS.md` is read and the user asks to start the Realm, the configuration or blueprint still contains required placeholders, or either file contains `setup_status: cli_started`. If the user already ran `npm run llm-onboard`, treat those answers as the setup draft and complete startup without repeating questions unless a required field is missing or a risky assumption blocks mapping.
+The agent starts this protocol automatically when `AGENTS.md` is read and the user asks to start the Realm, the configuration or blueprint still contains required placeholders, or either file contains `setup_status: cli_started`.
+
+If the user already ran `npm run llm-onboard`, the agent must treat those answers as the setup draft and complete startup without repeating questions unless a required field is missing or a risky assumption blocks mapping. Startup means translating the setup draft, marking setup complete, and running the first mapping pass.
 
 ## Steps
 1. Inspect `02_user_realm/RESEARCH_BLUEPRINT.md` and `00_system/REALM_CONFIGURATION.md`.
-2. Create a short todo list with the CLI's todo/task tool if available:
+2. Create a short todo list with the CLI's todo/task tool if available. This is mandatory when the tool exists. Minimum todo items:
    - inspect setup draft,
    - verify Root Vault,
    - synthesize blueprint/config,
    - initialize aggregator,
    - run initial mapping.
 3. Treat CLI-generated answers as a setup draft, not as questions to repeat.
-4. Translate the draft into a usable research configuration:
+4. Translate the draft into a usable research configuration before mapping:
    - preserve the project title and description,
    - register helpful artifact URLs or file paths,
    - infer a tentative source universe, vocabulary, methods, outputs, and mapping target from the description, artifacts, and Root Vault,
@@ -36,7 +38,7 @@ The agent starts this protocol automatically when `AGENTS.md` is read and the us
    - inferred scope, source universe, vocabulary, methods, outputs, and initial mapping target are present where useful,
    - anything not translated is listed as deferred with a reason.
 10. If `01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md` does not exist, create it from `01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR_TEMPLATE.md`.
-11. Run `00_system/INITIAL_MAPPING_PROTOCOL.md`.
+11. Run `00_system/INITIAL_MAPPING_PROTOCOL.md`. Do this in the same turn as startup unless blocked by a missing required field, an unreachable Root Vault, or required external URL permission.
 12. Report the completed startup checklist in the final response.
 
 Do not ask follow-up questions before step 11 unless a required field is absent, the Root Vault path cannot be located, external URL access needs permission, or a risky assumption blocks immediate mapping. The user's `start the Realm` prompt is already permission to run initial mapping.
@@ -44,6 +46,13 @@ Do not ask follow-up questions before step 11 unless a required field is absent,
 Use the CLI's todo/task tool if available to track startup; this is mandatory when the tool exists. Keep the todo list in the tool UI, not in the Realm, unless the researcher asks for a written checklist.
 
 Use the CLI's question/input tool for required questions. If no question tool exists, ask in chat. Keep questions short and grouped only when unavoidable.
+
+## Do Not Stop Early
+- Do not stop after reading files.
+- Do not stop after creating only a source map.
+- Do not ask whether to run initial mapping after the user has said `start the Realm`.
+- Do not leave `setup_status: cli_started` in the blueprint or configuration after translation.
+- Do not report startup complete unless the setup draft was translated, the translation audit passed, the aggregator exists, and initial mapping ran or is explicitly blocked.
 
 ## Minimum Research Blueprint
 - Project title

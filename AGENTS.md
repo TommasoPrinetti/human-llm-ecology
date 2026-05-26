@@ -17,12 +17,12 @@ If `preferred_llm_cli` is present in `00_system/REALM_CONFIGURATION.md`, adapt s
 ## Startup Gate
 Do not map, index, answer from sources, or ingest new material until `00_system/REALM_CONFIGURATION.md` and `02_user_realm/RESEARCH_BLUEPRINT.md` have been filled for the project.
 
-When the user says `Read AGENTS.md and start the Realm`, treat that as authorization to complete startup and run the first mapping pass. Do not ask for a second confirmation before initial mapping.
+`Read AGENTS.md and start the Realm` is an executable command, not a request for a plan. It authorizes the agent to complete startup and run the first mapping pass. Do not ask for a second confirmation before initial mapping.
 
 If either file still contains required placeholders such as `[path]`, `[project name]`, or `[project description]`, or either file contains `setup_status: cli_started`, automatically start the Realm:
 1. Read `00_system/ONBOARDING.md`.
-2. Create and maintain a short startup todo list with the CLI's todo/task tool if available. Do this before editing files or mapping sources.
-3. First translate the existing setup draft into a usable research configuration without asking the researcher.
+2. Create and maintain a short startup todo list with the CLI's todo/task tool if available. This is mandatory when the tool exists, and it must happen before editing files or mapping sources.
+3. Translate the existing setup draft into a usable research configuration before doing Cicero mapping. Do not skip this translation and do not merely read the draft.
 4. Use the project description, artifact references, and Root Vault path to infer missing scope, source universe, vocabulary, methods, outputs, and initial mapping targets.
 5. Use shell/file tools to verify local paths. Use web/MCP/browser tools for artifact URLs only when allowed by `external_sources_allowed`, and log external use when required.
 6. Use the CLI's question/input tool only if a required field is absent, the Root Vault cannot be located, or a risky assumption would block immediate mapping.
@@ -32,7 +32,7 @@ If either file still contains required placeholders such as `[path]`, `[project 
 10. Run the first mapping pass through `00_system/INITIAL_MAPPING_PROTOCOL.md`.
 11. Update the startup todo list as each step completes and report the completed checklist in the final response.
 
-During startup, use the CLI's todo/task tool if available to track progress; this is mandatory when the tool exists. Do not create a Markdown todo file unless the user asks for one.
+During startup, do not stop after a navigational source map unless the setup draft has already been translated, `setup_status` has been moved to `realm_started`, and the startup checklist is complete. Do not create a Markdown todo file unless the user asks for one.
 
 ## Smallest Valid Action
 Do the smallest Realm action that satisfies the task. Do not create a fragment, memo, mailbox note, concept index, report, or archive entry unless it has a distinct purpose.
