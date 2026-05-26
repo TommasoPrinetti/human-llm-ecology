@@ -31,7 +31,7 @@ const paths = {
   aggregatorTemplate: resolve(root, "03_logs/research_tendencies/RESEARCH_NEED_AGGREGATOR_TEMPLATE.md"),
 };
 
-const startupPrompt = "Read AGENTS.md and start the Realm - translate the setup draft, fill configuration and blueprint, create folder mirror indexes, and run initial indexing. Do not stop after reading files or ask for confirmation beyond what the startup gate requires.";
+const startupPrompt = "Execute 00_system/instructions/STARTUP.md then 00_system/instructions/ONBOARDING.md — survey the Root Vault, then write folder-mirrored INDEX.md files into 01_llm_realm/00_root_mirror/ (the directory tree already exists, do not recreate it — just start filling), update 01_llm_realm/00_realm_index.md, run the smoke test, set setup_status to realm_started, and write the startup report at 05_agent_reports/ using the template at 00_system/templates/STARTUP_REPORT_TEMPLATE.md. Do not stop after reading files. Do not stop after one index. Do not re-ask questions the CLI draft already answered.";
 
 const cliLaunch = {
   "Claude Code": { command: "claude",   args: ["-p", startupPrompt] },

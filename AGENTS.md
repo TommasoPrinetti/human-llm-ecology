@@ -111,7 +111,7 @@ Add one short row to `03_logs/user_requests.md`.
 Use this format:
 
 ```markdown
-| YYYY-MM-DD | [short request summary] | [planned sub-agent sequence] | in_progress | [expected output or chat answer] |
+| Date | Request summary | Route | Status | Output |
 ```
 
 Keep the summary readable. Do not paste the full prompt unless exact wording matters.
@@ -147,6 +147,8 @@ Use this table. The `Route` column is the exact execution path you must run for 
 | `index_maintenance` | log -> Conceptualizer if scope is unclear -> Navigator if search is needed -> Checker -> answer |
 | `source_intake` | log -> Navigator -> Checker -> answer |
 | `startup` | log -> `00_system/instructions/STARTUP.md` -> `00_system/instructions/ONBOARDING.md` -> answer |
+
+Route note — `synthesis_report`: skip Conceptualizer and Navigator when evidence packets already exist. Use `Packer -> Checker` directly (see `00_system/instructions/PROCESS_ROUTER.md` route table).
 
 ### Step 5 - Execute The Sub-Agent Sequence
 Read each required SOUL immediately before doing that specialist's work.

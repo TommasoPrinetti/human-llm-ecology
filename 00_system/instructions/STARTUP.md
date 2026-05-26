@@ -53,36 +53,41 @@ Fill or verify:
 If the Root Vault path is missing or unreachable, stop and ask for it.
 
 ## Step 2 - Survey Root Vault Folders
-Survey the Root Vault folder tree.
+List every directory in the Root Vault, full tree. For each directory:
 
-Create a folder-level inventory:
-- top-level folders,
-- meaningful second-level folders,
-- source types present,
-- machine-readable status,
-- obvious dates, names, places, projects, topics,
-- gaps such as scans without OCR or audio without transcript.
+1. List all files and subdirectories (skip .DS_Store, system files, empty dirs)
+2. Note: file types present (.pdf, .md, .docx, .mp4, .wav, .csv, .json, etc.), count per type, approximate date range from filenames or file metadata
+3. Open and read enough files to characterize the folder's content accurately — examine different file types and topics within the folder rather than reading every file cover to cover
+4. Record: source types, modality, names, dates, topics, keywords, machine-readability, gaps (OCR needed, untranscribed audio, etc.)
 
-Do not deeply read every file during startup. Sample enough to build a useful navigation index.
+Every Root Vault folder must be surveyed. Skip only temp, system, cache, or truly empty directories.
 
 ## Step 3 - Create Folder-Mirrored Realm Indexes
-For each meaningful Root Vault folder, create a matching folder under:
+For every Root Vault folder that contains retrievable material, create a matching INDEX.md:
 
 ```txt
 01_llm_realm/00_root_mirror/[root-relative-folder]/INDEX.md
 ```
 
-Example:
+Procedure per folder:
+1. Create the directory under `01_llm_realm/00_root_mirror/` if it does not already exist
+2. Write `INDEX.md` using `01_llm_realm/00_root_mirror/FOLDER_INDEX_TEMPLATE.md`
+3. Fill YAML frontmatter with the grep terms you collected during the survey (source_types, modalities, topics, keywords, people, places, date_range)
+4. Write the body — exactly the 5 sections from Step 5
+5. Set `index_status: draft` initially
+
+Example mapping:
 
 ```txt
-Root Vault:
-  /RootVault/interviews/phase_1/
-
-LLM Realm:
-  01_llm_realm/00_root_mirror/interviews/phase_1/INDEX.md
+Root Vault path:          /RootVault/interviews/phase_1/
+Realm mirror INDEX.md:    01_llm_realm/00_root_mirror/interviews/phase_1/INDEX.md
 ```
 
-Each `INDEX.md` must use `01_llm_realm/00_root_mirror/FOLDER_INDEX_TEMPLATE.md`.
+Rules:
+- Index the whole Root Vault, not a subset. Every folder with retrievable material gets an INDEX.md.
+- One INDEX.md per folder. Do not create one per file.
+- Use the template exactly. Do not skip YAML fields that have values.
+- Omit YAML fields that have no value — do not write `people: unknown`.
 
 ## Step 4 - Write Grep-Friendly YAML
 The YAML header is the fast retrieval layer. Keep it compact, normalized, and grep-friendly.
