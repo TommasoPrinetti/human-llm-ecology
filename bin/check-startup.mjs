@@ -61,7 +61,7 @@ if (!rootVaultPath || rootVaultPath === "[path]") {
   }
 }
 
-if (!/external_sources_allowed:\s*(closed|explicit_request_only|logged_monitoring_allowed)/.test(config)) {
+if (!/external_sources_allowed:\s*(yes|no)/.test(config)) {
   failures.push("external_sources_allowed is missing or invalid.");
 }
 
