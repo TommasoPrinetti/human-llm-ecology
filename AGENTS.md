@@ -153,7 +153,15 @@ Route note — `synthesis_report`: skip Conceptualizer and Navigator when eviden
 ### Step 5 - Execute The Sub-Agent Sequence
 Read each required SOUL immediately before doing that specialist's work.
 
-If the agent harness exposes a `sub_agent` tool, use it to invoke each sub-agent in the selected sequence. Pass the original user prompt and all prior outputs to the next sub-agent.
+The tool name for spawning sub-agents depends on the CLI environment:
+
+| Environment | Spawn tool | Subagent types | Todo tracking |
+|---|---|---|---|
+| Opencode | `task` | `general`, `explore`, `scout` | `todowrite` |
+| Claude Code | `Task` | built-in | built-in todo |
+| Codex | `task` | built-in | built-in todo |
+
+Use the environment's spawn tool to invoke each sub-agent in the selected sequence, passing the original user prompt and all prior outputs to the next sub-agent. If the environment does not expose a spawn tool, simulate the call by reading the relevant SOUL file and performing only that sub-agent's work in the current session.
 
 Handoff rule:
 ```txt
@@ -162,8 +170,6 @@ Navigator output -> Packer input
 Packer output -> Checker input
 Checker output -> final answer
 ```
-
-If no `sub_agent` tool exists, simulate the call by reading the relevant SOUL file and performing only that sub-agent's work in the current session.
 
 Do not invent a specialist output. If the sequence includes `Conceptualizer`, produce a Conceptualizer Brief. If the sequence includes `Navigator`, produce a Navigator Evidence Packet or the requested index update. If the sequence includes `Packer`, write a report. If the sequence includes `Checker`, produce a verification note or verified correction.
 

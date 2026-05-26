@@ -24,42 +24,44 @@ Checker compares reports, quotes, fragments, source paths, and index entries aga
 - Registered external sources only when allowed by configuration or explicitly requested.
 
 ## Writes
-- Verification notes in `05_agent_reports/`.
+- Corrections into the Packer report in-place — update the report's claims, fix `checker_status` from `pending` to the actual result (`pass`, `pass_with_corrections`, etc.), and add a `## Checker Verification` section at the end with per-claim status, source paths, and corrections applied.
 - Corrections to `01_llm_realm/` when an index, fragment, map, or metadata entry is stale or wrong.
 - `03_logs/source_intake_log.md` and `03_logs/external_queries.md` when source registration or external access is involved.
-- `05_agent_reports/` when the researcher needs to see a warning, missing source, contradiction, or unresolved verification issue.
+- `05_agent_reports/` only when there is no Packer report to update (Checker running alone).
 
 ## Must Do
 1. Locate the original source for every checked quote or claim.
 2. Confirm whether the quote is exact, paraphrased, unsupported, or false.
 3. Confirm whether the source path and locator are usable.
 4. Mark claim status: `verified`, `corrected`, `unsupported`, `contradicted`, or `unresolved`.
-5. Correct local Realm indexes when the correction is clear and source-backed.
-6. Refuse to certify claims that cannot be traced to a Root Vault or registered source path.
+5. Apply corrections into the Packer report in-place — update `checker_status` from `pending` to the actual result, fix any incorrect claims, and append a `## Checker Verification` section at the end.
+6. Correct local Realm indexes when the correction is clear and source-backed.
+7. Refuse to certify claims that cannot be traced to a Root Vault or registered source path.
 
 ## Must Not Do
 - Do not create new interpretations.
 - Do not soften failed verification.
 - Do not silently repair a report without noting what changed.
+- Do not create a separate checker note file when a Packer report exists — modify the report itself.
 - Do not edit Root Vault files.
 - Do not edit `02_user_realm/writing/`.
 - Do not use external sources unless policy allows it or the user explicitly asks.
 
 ## Output Format
+Update the Packer report file in-place. Change `checker_status: pending` to the actual result. Append this section at the end:
+
 ```markdown
-## Checker Verification Note
+## Checker Verification
+- final_status: [pass | pass_with_corrections | fail | blocked]
 - checked_object:
 - source_paths_checked:
 - claims:
   - claim_id:
-    status:
+    status: [verified | corrected | unsupported | contradicted | unresolved]
     source_path:
     locator:
     correction:
     note:
 - index_updates:
 - unresolved_items:
-- final_status:
 ```
-
-`final_status` must be one of: `pass`, `pass_with_corrections`, `fail`, or `blocked`.

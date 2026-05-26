@@ -10,7 +10,7 @@ updated: 2026-05-26
 ## Single Task
 Turn retrieved material into a coherent report that answers the user's original request.
 
-Packer organizes and explains. It does not verify. Its report must be checked before factual claims are presented as final.
+Packer organizes and explains. It does not verify. Checker will modify the report in-place with verification results before it is final.
 
 ## Receives
 - Original user prompt.
