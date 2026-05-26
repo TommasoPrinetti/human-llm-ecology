@@ -40,7 +40,9 @@ At the end, setup can open your selected CLI from the Realm folder. Press Enter 
 Tell the agent:
 
 ```txt
-Read AGENTS.md and start the Realm.
+Read AGENTS.md and start the Realm — translate the setup draft, fill configuration
+and blueprint, run initial mapping. Do not stop after reading files or ask for
+confirmation beyond what the startup gate requires.
 ```
 
 The agent will:

@@ -32,11 +32,11 @@ const paths = {
 };
 
 const cliLaunch = {
-  "Claude Code": { command: "claude",   prompt: "Read AGENTS.md and start the Realm." },
-  Codex:         { command: "codex",    prompt: "Read AGENTS.md and start the Realm." },
-  OpenCode:      { command: "opencode", prompt: "Read AGENTS.md and start the Realm." },
-  Kilo:          { command: null, prompt: "Open this folder in Kilo, then ask: Read AGENTS.md and start the Realm." },
-  Other:         { command: null, prompt: "Open this folder with your LLM agent, then ask: Read AGENTS.md and start the Realm." },
+  "Claude Code": { command: "claude",   prompt: "Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires." },
+  Codex:         { command: "codex",    prompt: "Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires." },
+  OpenCode:      { command: "opencode", prompt: "Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires." },
+  Kilo:          { command: null, prompt: "Open this folder in Kilo, then ask: Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires." },
+  Other:         { command: null, prompt: "Open this folder with your LLM agent, then ask: Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires." },
 };
 
 function sanitizeYaml(s) { return s.replace(/"/g, "\\\"").replace(/\n/g, "\\n").replace(/```/g, "`\\`\\`"); }
