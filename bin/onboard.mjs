@@ -40,6 +40,8 @@ function sanitizeYaml(s) { return s.replace(/"/g, "\\\"").replace(/\n/g, "\\n").
 function ensureParent(file) { mkdirSync(dirname(file), { recursive: true }); }
 function splitList(v) { return v.split(/[,;\n]/).map(i => i.trim()).filter(Boolean); }
 function yamlList(items, fb = "[not specified]") { return (items.length ? items : [fb]).map(i => `- ${i}`).join("\n"); }
+function markdownContinuation(s) { return s.split("\n").map(line => `  ${line}`).join("\n"); }
+function oneLine(s) { return s.replace(/\s+/g, " ").trim(); }
 
 // ── display ──────────────────────────────────────────────────────────────────
 function divider(ch = "─") { output.write(c.dim + ch.repeat(W - 1) + c.reset + "\n"); }
@@ -61,6 +63,22 @@ async function ask(rl, text, fallback = "") {
   const fb = fallback ? dim(` (${fallback})`) : "";
   const a = (await rl.question(bold(text) + fb + dim(": "))).trim();
   return a || fallback;
+}
+
+async function askMultiline(rl, text, fallback = "") {
+  output.write(bold(text) + "\n");
+  output.write(dim("Paste or type multiple lines. Finish with a line containing only END.") + "\n");
+  if (fallback) output.write(dim(`Leave empty and type END to use: ${fallback}`) + "\n");
+
+  const lines = [];
+  while (true) {
+    const line = await rl.question(dim("> "));
+    if (line.trim() === "END") break;
+    lines.push(line);
+  }
+
+  const value = lines.join("\n").trim();
+  return value || fallback;
 }
 
 // ── arrow-key selection (raw stdin, zero-dependency) ─────────────────────────
@@ -138,7 +156,7 @@ function review(data) {
   output.write(`\n  ${bold(c.bMagenta + "Review")}\n\n`);
   const rows = [
     ["Project",        data.projectTitle],
-    ["Description",    data.projectDescription],
+    ["Description",    oneLine(data.projectDescription)],
     ["Artifacts",      data.projectArtifacts.join(", ")],
     ["Root Vault",     data.rootVaultPath],
     ["External policy", data.externalPolicy],
@@ -196,7 +214,7 @@ ${c.bCyan}██╗  ██╗      ██╗     ██╗     ███╗   �
   // ── Step 1: Project ───────────────────────────────────────────────────────
   step(1, 4, "Project Identity");
   const projectTitle   = await ask(rl, "Project name");
-  const projectDescription = await ask(rl, "Project description");
+  const projectDescription = await askMultiline(rl, "Project description");
   const projectArtifacts = splitList(await ask(
     rl,
     "Helpful artifacts — URLs or file paths (comma-separated)",
@@ -256,7 +274,8 @@ onboarding_status: cli_started
 
 ## Project
 - Title: ${projectTitle || "[project name]"}
-- Description: ${projectDescription || "[project description]"}
+- Description:
+${markdownContinuation(projectDescription || "[project description]")}
 
 ## Project Artifacts
 ${yamlList(projectArtifacts, "No additional URLs or file paths provided during fast onboarding.")}
