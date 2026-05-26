@@ -3,8 +3,8 @@ type: realm_index
 evidence_type: processed
 evidence_level: L1
 agent: Cicero
-created: [date]
-updated: [date]
+created: 2026-05-26
+updated: 2026-05-26
 ---
 
 # LLM Realm — Master Index
@@ -53,9 +53,9 @@ See `03_logs/source_intake_log.md` for new Root Vault batches and retained exter
 See `07_serendipity_links/` for cross-modal connections discovered by Tacito.
 
 ## Vault overview
-- Total source folders / batches: [count]
-- Total machine-readable files: [count]
-- Total scans/images: [count]
-- Total audio/video: [count]
-- Total registered external sources: [count]
-- Mapping status: [not started / partial / complete]
+- Total source folders / batches: 0
+- Total machine-readable files: 0
+- Total scans/images: 0
+- Total audio/video: 0
+- Total registered external sources: 0
+- Mapping status: not started

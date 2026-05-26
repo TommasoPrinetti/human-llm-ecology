@@ -7,6 +7,9 @@
 ehthumbs.db
 Thumbs.db
 
+# Agent-specific files (created by onboarding per user CLI preference)
+CLAUDE.md
+
 # Archive temp
 *.tmp
 *.temp

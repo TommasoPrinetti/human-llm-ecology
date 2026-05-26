@@ -1,8 +1,9 @@
 ---
 type: research_blueprint
-agent: Lucrezio
-created: 2026-05-21
-updated: 2026-05-21
+agent: onboarding_cli
+created: 2026-05-26
+updated: 2026-05-26
+setup_status: cli_started
 ---
 
 # Research Blueprint
@@ -12,30 +13,34 @@ updated: 2026-05-21
 - Description: [project description]
 
 ## Project Artifacts
-- [helpful URLs or file paths, if any]
+- [artifact URLs or file paths, if any]
 
 ## Sources
 - Root Vault path: [path]
-- Main source types: To be discovered from the Root Vault.
-- Expected incoming sources: Not specified during fast onboarding.
+- Main source types: [inferred during startup]
+- Expected incoming sources: [inferred during startup]
 
 ## Research Vocabulary
-- Key actors / institutions / places: To be inferred from the project description, artifacts, and Root Vault.
-- Key concepts: To be inferred from the project description, artifacts, and Root Vault.
-- Sensitizing concepts, not evidence: None specified during fast onboarding.
-- Theoretical frames, not forced labels: None specified during fast onboarding.
+- Key actors / institutions / places: [inferred during startup]
+- Key concepts: [inferred during startup]
+- Sensitizing concepts, not evidence: [inferred during startup]
+- Theoretical frames, not forced labels: [inferred during startup]
 
 ## Method And Evidence
-- Methods: To be inferred from the project description and source collection.
+- Methods: [inferred during startup]
 - Claims require source paths.
 - L2 clues require back-search before reporting.
 - External sources must stay labeled external unless moved into the Root Vault.
+- External source policy: [set in configuration]
 
 ## Outputs
 - Start with source maps and evidence-grounded answers unless the researcher requests another output.
 
 ## Blind Spots
-- To be discovered during mapping.
+- [identified during startup]
 
 ## Researcher Preferences
-Use concise, source-grounded answers. Ask follow-up questions only when needed to avoid a risky assumption.
+[inferred or stated during startup]
+
+## Preferred LLM CLI
+[cli]

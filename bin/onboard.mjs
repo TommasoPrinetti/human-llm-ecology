@@ -25,6 +25,8 @@ const isForce = process.argv.includes("--force");
 const paths = {
   blueprint: resolve(root, "02_user_realm/RESEARCH_BLUEPRINT.md"),
   config:    resolve(root, "00_system/REALM_CONFIGURATION.md"),
+  agents:    resolve(root, "AGENTS.md"),
+  claude:    resolve(root, "CLAUDE.md"),
   aggregator:      resolve(root, "01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR.md"),
   aggregatorTemplate: resolve(root, "01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR_TEMPLATE.md"),
 };
@@ -447,6 +449,13 @@ preferred_llm_cli: "${preferredCli}"
     aggCreated = true;
   }
 
+  let claudeCreated = false;
+  if (preferredCli === "Claude Code" && existsSync(paths.agents)) {
+    const agents = readFileSync(paths.agents, "utf8");
+    writeFileSync(paths.claude, agents);
+    claudeCreated = true;
+  }
+
   // ── success ───────────────────────────────────────────────────────────────
   output.write("\n");
   divider("━");
@@ -454,6 +463,7 @@ preferred_llm_cli: "${preferredCli}"
   output.write(`  ${dim("─")} ${c.cyan}${paths.blueprint}${c.reset}\n`);
   output.write(`  ${dim("─")} ${c.cyan}${paths.config}${c.reset}\n`);
   if (aggCreated) output.write(`  ${dim("─")} ${c.cyan}${paths.aggregator}${c.reset}\n`);
+  if (claudeCreated) output.write(`  ${dim("─")} ${c.cyan}${paths.claude}${c.reset}\n`);
   output.write("\n");
 
   const launch = cliLaunch[preferredCli] || cliLaunch.Other;

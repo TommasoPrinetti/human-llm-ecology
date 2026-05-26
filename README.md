@@ -114,4 +114,4 @@ The framework uses internal roles to route work. You do not need to call them di
 
 ## License
 
-MIT.
+[PolyForm Noncommercial 1.0.0](LICENSE)

@@ -1,8 +1,9 @@
 ---
 type: realm_configuration
-agent: Varro
-created: 2026-05-21
-updated: 2026-05-21
+agent: onboarding_cli
+created: 2026-05-26
+updated: 2026-05-26
+setup_status: cli_started
 ---
 
 # Realm Configuration
@@ -16,7 +17,7 @@ root_vault_path: "[path]"
 root_vault_mode: protected_append_only
 
 source_policy: internal_first
-external_sources_allowed: explicit_request_only
+external_sources_allowed: closed
 external_logs:
   - 03_logs/external_queries.md
   - 03_logs/source_intake_log.md
@@ -31,8 +32,5 @@ protected_paths:
 archive_path: 01_llm_realm/archive/
 stale_after_days: 30
 archive_after_days: 60
+preferred_llm_cli: "[cli]"
 ```
-
-## Notes
-- Change `external_sources_allowed` only when the researcher wants logged external monitoring.
-- This file never grants permission to edit the Root Vault.
