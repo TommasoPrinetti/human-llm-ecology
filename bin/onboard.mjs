@@ -31,12 +31,14 @@ const paths = {
   aggregatorTemplate: resolve(root, "01_llm_realm/06_research_tendencies/RESEARCH_NEED_AGGREGATOR_TEMPLATE.md"),
 };
 
+const startupPrompt = "Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires.";
+
 const cliLaunch = {
-  "Claude Code": { command: "claude",   prompt: "Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires." },
-  Codex:         { command: "codex",    prompt: "Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires." },
-  OpenCode:      { command: "opencode", prompt: "Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires." },
-  Kilo:          { command: null, prompt: "Open this folder in Kilo, then ask: Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires." },
-  Other:         { command: null, prompt: "Open this folder with your LLM agent, then ask: Read AGENTS.md and start the Realm — translate the setup draft, fill configuration and blueprint, run initial mapping. Do not stop after reading files or ask for confirmation beyond what the startup gate requires." },
+  "Claude Code": { command: "claude",   args: ["-p", startupPrompt] },
+  Codex:         { command: "codex",    args: ["exec", startupPrompt] },
+  OpenCode:      { command: "opencode", args: ["--prompt", startupPrompt] },
+  Kilo:          { command: "kilo",     args: [startupPrompt] },
+  Other:         { command: null, prompt: "Open this folder with your LLM agent, then ask:\n\n" + startupPrompt },
 };
 
 function sanitizeYaml(s) { return s.replace(/"/g, "\\\"").replace(/\n/g, "\\n").replace(/```/g, "`\\`\\`"); }
@@ -73,15 +75,17 @@ function createRL() {
   return readline.createInterface({ input, output, terminal: !noColor });
 }
 
-async function ask(rl, text, fallback = "") {
+async function ask(rl, text, fallback = "", hint = "type your answer") {
   const fb = fallback ? dim(` (${fallback})`) : "";
+  output.write(`${dim("  ↳ " + hint)}\n`);
   const a = (await rl.question(bold(text) + fb + dim(": "))).trim();
   return a || fallback;
 }
 
-async function askPastedText(rl, text, fallback = "") {
-  if (!input.isTTY) return ask(rl, text, fallback);
+async function askPastedText(rl, text, fallback = "", hint = "type or paste content, press Enter when done") {
+  if (!input.isTTY) return ask(rl, text, fallback, hint);
 
+  output.write(dim("  ↳ " + hint + "\n"));
   output.write(bold(text) + dim(": "));
 
   return new Promise((resolve) => {
@@ -286,18 +290,19 @@ ${c.bCyan}██╗  ██╗      ██╗     ██╗     ███╗   �
 
   // ── Step 1: Project ───────────────────────────────────────────────────────
   step(1, 4, "Project Identity");
-  const projectTitle   = await ask(rl, "Project name");
+  const projectTitle   = await ask(rl, "Project name", "", "e.g. Ecologies of LLM Practices");
   const projectDescription = await askPastedText(rl, "Project description");
   const projectArtifacts = splitList(await ask(
     rl,
     "Helpful artifacts — URLs or file paths (comma-separated)",
-    "none"
+    "none",
+    "e.g. https://mysite.com, /Users/name/data.csv"
   )).filter(item => item.toLowerCase() !== "none");
 
   // ── Step 2: Root Vault ────────────────────────────────────────────────────
   step(2, 4, "Root Vault");
   output.write(dim("Absolute path to your source files. The LLM will discover types and structure.\n\n"));
-  const rootVaultPath  = await ask(rl, "Root Vault path (absolute)");
+  const rootVaultPath  = await ask(rl, "Root Vault path (absolute)", "", "e.g. /Users/name/Documents/my-sources");
 
   // ── Step 3: External policy (arrow keys) ───────────────────────────────────
   step(3, 4, "External Source Policy");
@@ -469,19 +474,26 @@ preferred_llm_cli: "${preferredCli}"
   const launch = cliLaunch[preferredCli] || cliLaunch.Other;
   output.write(`  ${bold("Next:")}\n\n`);
   if (launch.command) {
-    output.write(`  1. ${bold("Open")} ${c.bGreen}\`${launch.command}\`${c.reset} from this folder.\n`);
-    output.write(`  2. ${bold("Send:")} ${c.bGreen}${launch.prompt}${c.reset}\n\n`);
+    if (launch.args && launch.args.length) {
+      output.write(`  1. ${bold("Open")} ${c.bGreen}\`${launch.command}\`${c.reset} from this folder (prompt is pre-loaded).\n`);
+    } else {
+      output.write(`  1. ${bold("Open")} ${c.bGreen}\`${launch.command}\`${c.reset} from this folder.\n`);
+      output.write(`  2. ${bold("Send:")} ${c.bGreen}${launch.prompt}${c.reset}\n\n`);
+    }
     if (input.isTTY) {
       const launchRl = createRL();
       const openNow = (await ask(launchRl, `Press Enter to open ${preferredCli} now, or type n to skip`, "")).toLowerCase();
       launchRl.close();
       if (!["n", "no"].includes(openNow)) {
         output.write("\n" + dim(`Opening ${preferredCli} in ${root}...\n`));
-        const result = spawnSync(launch.command, { cwd: root, stdio: "inherit", shell: true });
+        const cmd = launch.args && launch.args.length
+          ? `${launch.command} ${launch.args.map(a => `"${a}"`).join(" ")}`
+          : launch.command;
+        const result = spawnSync(cmd, { cwd: root, stdio: "inherit", shell: true });
         if (result.error || result.status) {
           output.write(c.yellow + "\nCould not open the selected CLI automatically. Run this manually:\n" + c.reset);
           output.write(`  ${launch.command}\n`);
-          output.write(`  ${launch.prompt}\n`);
+          if (launch.prompt) output.write(`  ${launch.prompt}\n`);
         }
       }
     }
