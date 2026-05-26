@@ -127,7 +127,7 @@ function hasFilledOnboarding() {
   if (!existsSync(paths.blueprint) || !existsSync(paths.config)) return false;
   const b = readFileSync(paths.blueprint, "utf8");
   const cfg = readFileSync(paths.config, "utf8");
-  const ph = ["[project name]", "[path]", "[question 1]", "to refine during LLM onboarding"];
+  const ph = ["[project name]", "[project description]", "[path]"];
   return !ph.some(p => b.includes(p) || cfg.includes(p));
 }
 
@@ -138,9 +138,8 @@ function review(data) {
   output.write(`\n  ${bold(c.bMagenta + "Review")}\n\n`);
   const rows = [
     ["Project",        data.projectTitle],
-    ["Research object", data.researchObject],
-    ["Scope",          data.scope],
-    ["Questions",      data.questions.join(", ")],
+    ["Description",    data.projectDescription],
+    ["Artifacts",      data.projectArtifacts.join(", ")],
     ["Root Vault",     data.rootVaultPath],
     ["External policy", data.externalPolicy],
     ["Preferred CLI",  data.preferredCli],
@@ -179,7 +178,7 @@ ${c.bCyan}██╗  ██╗      ██╗     ██╗     ███╗   �
 ╚═╝  ╚═╝      ╚══════╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝${c.reset}
   ${dim("LLM Researcher · Realm Onboarding")}
 `);
-  output.write(`\n  ${dim("Quick setup — the LLM will refine placeholders during onboarding.")}\n`);
+  output.write(`\n  ${dim("Quick setup — describe the project once; the LLM will infer structure later.")}\n`);
 
   // ── overwrite check ───────────────────────────────────────────────────────
   let rl = createRL();
@@ -197,9 +196,12 @@ ${c.bCyan}██╗  ██╗      ██╗     ██╗     ███╗   �
   // ── Step 1: Project ───────────────────────────────────────────────────────
   step(1, 4, "Project Identity");
   const projectTitle   = await ask(rl, "Project name");
-  const researchObject = await ask(rl, "Research object");
-  const scope          = await ask(rl, "Scope — period, place, cases", "to refine during LLM onboarding");
-  const questions      = splitList(await ask(rl, "Current questions (comma-separated)", "to refine during LLM onboarding"));
+  const projectDescription = await ask(rl, "Project description");
+  const projectArtifacts = splitList(await ask(
+    rl,
+    "Helpful artifacts — URLs or file paths (comma-separated)",
+    "none"
+  )).filter(item => item.toLowerCase() !== "none");
 
   // ── Step 2: Root Vault ────────────────────────────────────────────────────
   step(2, 4, "Root Vault");
@@ -228,7 +230,7 @@ ${c.bCyan}██╗  ██╗      ██╗     ██╗     ███╗   �
   rl = createRL();
 
   // ── Review ─────────────────────────────────────────────────────────────────
-  review({ projectTitle, researchObject, scope, questions, rootVaultPath, externalPolicy, preferredCli });
+  review({ projectTitle, projectDescription, projectArtifacts, rootVaultPath, externalPolicy, preferredCli });
 
   // ── Confirm (Y/n style) ───────────────────────────────────────────────────
   if (!isForce) {
@@ -254,39 +256,37 @@ onboarding_status: cli_started
 
 ## Project
 - Title: ${projectTitle || "[project name]"}
-- Field: [to refine during LLM onboarding]
-- Object: ${researchObject || "[what the project studies]"}
-- Scope: ${scope}
+- Description: ${projectDescription || "[project description]"}
 
-## Questions
-${yamlList(questions, "to refine during LLM onboarding")}
+## Project Artifacts
+${yamlList(projectArtifacts, "No additional URLs or file paths provided during fast onboarding.")}
 
 ## Sources
 - Root Vault path: ${rootVaultPath || "[path]"}
-- Main source types: [to refine during LLM onboarding — discovered from Root Vault]
-- Expected incoming sources: [to refine during LLM onboarding]
+- Main source types: To be discovered from the Root Vault.
+- Expected incoming sources: Not specified during fast onboarding.
 
 ## Research Vocabulary
-- Key actors / institutions / places: [to refine during LLM onboarding]
-- Key concepts: [to refine during LLM onboarding]
-- Sensitizing concepts, not evidence: [to refine during LLM onboarding]
-- Theoretical frames, not forced labels: [to refine during LLM onboarding]
+- Key actors / institutions / places: To be inferred from the project description, artifacts, and Root Vault.
+- Key concepts: To be inferred from the project description, artifacts, and Root Vault.
+- Sensitizing concepts, not evidence: None specified during fast onboarding.
+- Theoretical frames, not forced labels: None specified during fast onboarding.
 
 ## Method And Evidence
-- Methods: [to refine during LLM onboarding]
+- Methods: To be inferred from the project description and source collection.
 - Claims require source paths.
 - L2 clues require back-search before reporting.
 - External sources must stay labeled external unless moved into the Root Vault.
 - External source policy: ${externalPolicy}
 
 ## Outputs
-- [to refine during LLM onboarding]
+- Start with source maps and evidence-grounded answers unless the researcher requests another output.
 
 ## Blind Spots
-- [to refine during LLM onboarding]
+- To be discovered during mapping.
 
 ## Researcher Preferences
-[to refine during LLM onboarding]
+Use concise, source-grounded answers. Ask follow-up questions only when needed to avoid a risky assumption.
 
 ## Preferred LLM CLI
 ${preferredCli}
@@ -332,7 +332,7 @@ preferred_llm_cli: "${preferredCli}"
 
 ## Notes
 - This file was initialized by the CLI onboarding.
-- The LLM onboarding flow should refine any remaining placeholders.
+- The LLM onboarding flow should avoid asking for scope, object, questions, methods, or outputs unless the researcher requests that detail or the missing answer blocks immediate mapping.
 - This file never grants permission to edit the Root Vault.
 `;
 

@@ -9,37 +9,33 @@ updated: 2026-05-21
 
 ## Project
 - Title: [project name]
-- Field: [discipline / research setting]
-- Object: [what the project studies]
-- Scope: [period, place, actors, corpus, cases]
+- Description: [project description]
 
-## Questions
-- [question 1]
-- [question 2]
-- [question 3]
+## Project Artifacts
+- [helpful URLs or file paths, if any]
 
 ## Sources
 - Root Vault path: [path]
-- Main source types: [interviews, news, policy docs, reports, field notes, datasets]
-- Expected incoming sources: [what may arrive over time]
+- Main source types: To be discovered from the Root Vault.
+- Expected incoming sources: Not specified during fast onboarding.
 
 ## Research Vocabulary
-- Key actors / institutions / places: [list]
-- Key concepts: [list]
-- Sensitizing concepts, not evidence: [list]
-- Theoretical frames, not forced labels: [list]
+- Key actors / institutions / places: To be inferred from the project description, artifacts, and Root Vault.
+- Key concepts: To be inferred from the project description, artifacts, and Root Vault.
+- Sensitizing concepts, not evidence: None specified during fast onboarding.
+- Theoretical frames, not forced labels: None specified during fast onboarding.
 
 ## Method And Evidence
-- Methods: [qualitative, archival, computational, discourse, policy, ethnographic, mixed]
+- Methods: To be inferred from the project description and source collection.
 - Claims require source paths.
 - L2 clues require back-search before reporting.
 - External sources must stay labeled external unless moved into the Root Vault.
 
 ## Outputs
-- [evidence brief / concept index / contradiction report / source map / quote set / memo / article material / diagram]
+- Start with source maps and evidence-grounded answers unless the researcher requests another output.
 
 ## Blind Spots
-- [unmapped areas, missing perspectives, weak metadata, uncertain reliability]
+- To be discovered during mapping.
 
 ## Researcher Preferences
-[answer style, citation style, detail level, sensitivity constraints]
+Use concise, source-grounded answers. Ask follow-up questions only when needed to avoid a risky assumption.

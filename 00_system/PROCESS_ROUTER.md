@@ -15,6 +15,7 @@ Use this file only to choose the path. Use the skill/protocol/template for detai
 - All agent work happens in the Realm (`00_system/`, `01_llm_realm/`, `03_logs/`, `04_mailbox/`, `05_agent_reports/`).
 
 ## Triggers
+| Trigger | Owner | Route |
 |---|---|---|
 | New project | Varro + Human | `00_system/ONBOARDING.md` |
 | First Root Vault mapping | Cicero | `00_system/INITIAL_MAPPING_PROTOCOL.md` |

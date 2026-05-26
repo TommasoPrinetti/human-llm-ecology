@@ -28,7 +28,7 @@ Optional fast start:
 npm run llm-onboard
 ```
 
-This opens a small terminal questionnaire and writes a first draft of:
+This opens a short terminal questionnaire and writes a first draft of:
 
 ```txt
 02_user_realm/RESEARCH_BLUEPRINT.md
@@ -45,12 +45,17 @@ Read AGENTS.md and continue onboarding.
 
 The agent will:
 
-1. detect missing or underspecified fields,
-2. use its question/input tool, when available, to ask precise follow-up questions,
-3. fill `02_user_realm/RESEARCH_BLUEPRINT.md`,
-4. fill `00_system/REALM_CONFIGURATION.md`,
-5. initialize `RESEARCH_NEED_AGGREGATOR.md` if missing,
-6. ask whether to start the initial mapping.
+1. create a short todo list when its CLI supports task tracking,
+2. translate the CLI draft into a usable research configuration,
+3. infer scope, source universe, vocabulary, methods, outputs, and mapping targets from the project description, artifact references, and Root Vault,
+4. check that all useful draft details and artifact references were translated or explicitly deferred,
+5. verify local paths with file/shell tools,
+6. use web, browser, or MCP tools for artifact URLs only when your source policy allows it,
+7. ask a follow-up question only if required information is missing, external URL access needs permission, or the Root Vault cannot be located,
+8. fill `02_user_realm/RESEARCH_BLUEPRINT.md`,
+9. fill `00_system/REALM_CONFIGURATION.md`,
+10. initialize `RESEARCH_NEED_AGGREGATOR.md` if missing,
+11. ask whether to start the initial mapping.
 
 If the CLI has a todo/task tool, the agent should use it to track onboarding progress without creating extra files.
 
