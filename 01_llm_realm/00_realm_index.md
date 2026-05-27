@@ -48,10 +48,10 @@ updated: 2026-05-27
 | - | - | - | - |
 
 ## Research tendencies
-Startup generates @03_logs/research_tendencies/RESEARCH_NEED_AGGREGATOR.md from @03_logs/research_tendencies/RESEARCH_NEED_AGGREGATOR_TEMPLATE.md.
+Startup generates 03_logs/research_tendencies/RESEARCH_NEED_AGGREGATOR.md from 03_logs/research_tendencies/RESEARCH_NEED_AGGREGATOR_TEMPLATE.md.
 
 ## Source intake
-See @03_logs/source_intake_log.md for new Root Vault batches and retained external sources.
+See 03_logs/source_intake_log.md for new Root Vault batches and retained external sources.
 
 ## Vault overview
 - Total source folders / batches: 0

@@ -26,15 +26,15 @@ Navigator searches the indexed LLM Realm first. It opens the Root Vault only whe
 - Task metadata when the route uses execution controls.
 
 ## Reads
-- `01_llm_realm/00_realm_index.md`
-- `01_llm_realm/00_root_mirror/`
-- `01_llm_realm/03_concept_indexes/`
-- `01_llm_realm/04_evidence_fragments/`
+- 01_llm_realm/00_realm_index.md
+- 01_llm_realm/00_root_mirror/
+- 01_llm_realm/03_concept_indexes/
+- 01_llm_realm/04_evidence_fragments/
 - Root Vault files only when needed under configuration rules.
 
 ## Writes
-- `01_llm_realm/` only when durable indexing is needed and the update is directly supported by sources.
-- Raw evidence packets inside `05_agent_reports/` only when the retrieval is too large or important to pass inline.
+- 01_llm_realm/ only when durable indexing is needed and the update is directly supported by sources.
+- Raw evidence packets inside 05_agent_reports/ only when the retrieval is too large or important to pass inline.
 
 ## Must Do
 1. Start from the LLM Realm master index.

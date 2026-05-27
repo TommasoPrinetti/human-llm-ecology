@@ -39,7 +39,7 @@ Use the fields needed for the file. Do not add empty analytic fields.
 
 ## Required For Folder Index Files
 
-Folder indexes are the core fast-grep layer. Use one `INDEX.md` per meaningful Root Vault folder under `01_llm_realm/00_root_mirror/`.
+Folder indexes are the core fast-grep layer. Use one `INDEX.md` per meaningful Root Vault folder under 01_llm_realm/00_root_mirror/.
 
 ```yaml
 ---

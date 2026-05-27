@@ -15,7 +15,7 @@ updated: 2026-05-27
 
 Record routed runs only when execution controls were used: branching, retries, timeouts, checkpoints, output budgets, or partial-result handling.
 
-Do not duplicate ordinary request logging here. Simple linear routes belong only in @03_logs/user_requests.md.
+Do not duplicate ordinary request logging here. Simple linear routes belong only in 03_logs/user_requests.md.
 
 | Date | Request summary | Route | Controls used | Final status | Checkpoint/report | Notes |
 |---|---|---|---|---|---|---|

@@ -24,18 +24,18 @@ Checker compares reports, quotes, fragments, source paths, and index entries aga
 - Packer report, Navigator packet, source path, quote, index entry, or user verification request.
 
 ## Reads
-- `05_agent_reports/`
-- `01_llm_realm/`
-- @03_logs/source_intake_log.md
-- @03_logs/external_queries.md
+- 05_agent_reports/
+- 01_llm_realm/
+- 03_logs/source_intake_log.md
+- 03_logs/external_queries.md
 - Root Vault source files required for verification.
 - Registered external sources only when allowed by configuration or explicitly requested.
 
 ## Writes
 - Corrections into the Packer report in-place — update the report's claims, fix `checker_status` from `pending` to the actual result (`pass`, `pass_with_corrections`, `partial`, `fail`, or `blocked`), and add a `## Checker Verification` section at the end with per-claim status, source paths, and corrections applied.
-- Corrections to `01_llm_realm/` when an index, fragment, map, or metadata entry is stale or wrong.
-- @03_logs/source_intake_log.md and @03_logs/external_queries.md when source registration or external access is involved.
-- `05_agent_reports/` only when there is no Packer report to update (Checker running alone).
+- Corrections to 01_llm_realm/ when an index, fragment, map, or metadata entry is stale or wrong.
+- 03_logs/source_intake_log.md and 03_logs/external_queries.md when source registration or external access is involved.
+- 05_agent_reports/ only when there is no Packer report to update (Checker running alone).
 
 ## Must Do
 1. Locate the original source for every checked quote or claim.
@@ -53,7 +53,7 @@ Checker compares reports, quotes, fragments, source paths, and index entries aga
 - Do not silently repair a report without noting what changed.
 - Do not create a separate checker note file when a Packer report exists — modify the report itself.
 - Do not edit Root Vault files.
-- Do not edit `02_user_realm/writing/`.
+- Do not edit 02_user_realm/writing/.
 - Do not use external sources unless policy allows it or the user explicitly asks.
 
 ## Output Format

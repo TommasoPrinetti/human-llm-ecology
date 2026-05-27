@@ -23,16 +23,16 @@ Packer organizes and explains. It does not verify. Checker will modify the repor
 - Original user prompt.
 - Conceptualizer brief.
 - Navigator evidence packet.
-- Any route constraints from @00_system/instructions/PROCESS_ROUTER.md.
+- Any route constraints from 00_system/instructions/PROCESS_ROUTER.md.
 - Execution-plan state when the route has branches, retries, timeouts, checkpoints, or partial results.
 
 ## Reads
 - Navigator evidence packet.
 - Relevant LLM Realm indexes cited by Navigator.
-- Existing reports in `05_agent_reports/` only when continuity matters.
+- Existing reports in 05_agent_reports/ only when continuity matters.
 
 ## Writes
-- Reports in `05_agent_reports/`.
+- Reports in 05_agent_reports/.
 
 ## Must Do
 1. Answer the original request, not a broader invented task.

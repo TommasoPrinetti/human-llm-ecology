@@ -21,12 +21,12 @@ Use this file to choose the operational route for a user prompt. The home sessio
 
 ## Non-Negotiable
 - Root Vault is read-only. Never modify, reorganize, rename, or delete source files.
-- `02_user_realm/writing/` is read-only. It is the researcher's protected writing space.
+- 02_user_realm/writing/ is read-only. It is the researcher's protected writing space.
 - Search the LLM Realm before opening the Root Vault unless the user explicitly asks for original files or verification.
 - Every non-trivial source claim must be checked against a Root Vault or registered source path before it is presented as established.
 
 ## Universal First Step
-The home session logs every request in @03_logs/user_requests.md.
+The home session logs every request in 03_logs/user_requests.md.
 
 Use one short row:
 
@@ -59,18 +59,18 @@ log -> answer
 | Check whether an index matches the Root Vault | Checker | Index maintenance note |
 | Repair stale source paths or broken evidence links | Checker | Updated index/report |
 | Deepen a folder index or concept index | Conceptualizer -> Navigator -> Checker | Updated LLM Realm index |
-| Startup / initial vault setup | @00_system/instructions/STARTUP.md | Completed configuration, blueprint, folder mirror, and initial Realm index |
+| Startup / initial vault setup | 00_system/instructions/STARTUP.md | Completed configuration, blueprint, folder mirror, and initial Realm index |
 
 ## Source Intake
 Use `source_intake` for new Root Vault material or approved external sources that need registration or mapping.
 
 The intake route does the following:
-1. Register the source batch in @03_logs/source_intake_log.md.
-2. If the source is external, also log it in @03_logs/external_queries.md.
-3. Create or update the relevant folder mirror index under `01_llm_realm/00_root_mirror/`.
+1. Register the source batch in 03_logs/source_intake_log.md.
+2. If the source is external, also log it in 03_logs/external_queries.md.
+3. Create or update the relevant folder mirror index under 01_llm_realm/00_root_mirror/.
 4. Extract only reusable evidence fragments.
 5. Create or update concept indexes when the batch introduces repeated concepts.
-6. Update @01_llm_realm/00_realm_index.md.
+6. Update 01_llm_realm/00_realm_index.md.
 7. Write a short intake report only when the files or indexes changed in a meaningful way.
 
 The startup route already covers the first indexing pass. After startup, use `source_intake` for new material instead of a separate intake protocol.
@@ -118,15 +118,15 @@ When controls are needed, track each task with:
 - A failed dependency blocks downstream tasks unless the downstream task can honestly produce a partial result.
 - Partial results must name completed branches, failed branches, unresolved gaps, and any claims withheld from final presentation.
 - Checker may return `partial` when verified claims remain usable but unresolved branches prevent a full pass.
-- Record any retry, timeout, checkpoint, or partial final state in @03_logs/execution_runs.md.
+- Record any retry, timeout, checkpoint, or partial final state in 03_logs/execution_runs.md.
 
 ## Sub-Agent Contracts
 | Sub-agent | Reads | Writes | Must not do |
 |---|---|---|---|
-| Conceptualizer | User prompt, configuration, blueprint, existing request logs | @03_logs/structured_research_needs/, @03_logs/user_requests.md | Search sources, quote evidence, write final reports |
-| Navigator | Conceptualizer brief, LLM Realm, Root Vault if needed | @01_llm_realm/ when indexing is needed, raw evidence packet in @05_agent_reports/ when useful | Interpret beyond retrieval, write final answers |
-| Packer | Original request, Conceptualizer brief, Navigator packet | @05_agent_reports/ | Verify quotes, alter source evidence, maintain indexes |
-| Checker | Packer report, Navigator packet, LLM Realm, Root Vault, registered external sources | @01_llm_realm/, @03_logs/, @05_agent_reports/ | Create unsupported interpretations, silently pass unverified claims |
+| Conceptualizer | User prompt, configuration, blueprint, existing request logs | 03_logs/structured_research_needs/, 03_logs/user_requests.md | Search sources, quote evidence, write final reports |
+| Navigator | Conceptualizer brief, LLM Realm, Root Vault if needed | 01_llm_realm/ when indexing is needed, raw evidence packet in 05_agent_reports/ when useful | Interpret beyond retrieval, write final answers |
+| Packer | Original request, Conceptualizer brief, Navigator packet | 05_agent_reports/ | Verify quotes, alter source evidence, maintain indexes |
+| Checker | Packer report, Navigator packet, LLM Realm, Root Vault, registered external sources | 01_llm_realm/, 03_logs/, 05_agent_reports/ | Create unsupported interpretations, silently pass unverified claims |
 
 ## Sequence Rules
 - Conceptualizer does not search. It defines what should be searched.
