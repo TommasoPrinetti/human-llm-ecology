@@ -26,15 +26,15 @@ Checker compares reports, quotes, fragments, source paths, and index entries aga
 ## Reads
 - `05_agent_reports/`
 - `01_llm_realm/`
-- `03_logs/source_intake_log.md`
-- `03_logs/external_queries.md`
+- @03_logs/source_intake_log.md
+- @03_logs/external_queries.md
 - Root Vault source files required for verification.
 - Registered external sources only when allowed by configuration or explicitly requested.
 
 ## Writes
 - Corrections into the Packer report in-place — update the report's claims, fix `checker_status` from `pending` to the actual result (`pass`, `pass_with_corrections`, `partial`, `fail`, or `blocked`), and add a `## Checker Verification` section at the end with per-claim status, source paths, and corrections applied.
 - Corrections to `01_llm_realm/` when an index, fragment, map, or metadata entry is stale or wrong.
-- `03_logs/source_intake_log.md` and `03_logs/external_queries.md` when source registration or external access is involved.
+- @03_logs/source_intake_log.md and @03_logs/external_queries.md when source registration or external access is involved.
 - `05_agent_reports/` only when there is no Packer report to update (Checker running alone).
 
 ## Must Do

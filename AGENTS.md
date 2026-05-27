@@ -9,10 +9,10 @@ connects_to:
   - 00_system/instructions/REALM_CONFIGURATION.md
   - 00_system/instructions/STARTUP.md
   - 00_system/instructions/ONBOARDING.md
-  - 00_system/sub_agents/conceptualizer/SOUL.md
-  - 00_system/sub_agents/navigator/SOUL.md
-  - 00_system/sub_agents/packer/SOUL.md
-  - 00_system/sub_agents/checker/SOUL.md
+  - 00_system/sub_agents/conceptualizer/subagent_conceptualizer_instructions.md
+  - 00_system/sub_agents/navigator/subagent_navigator_instructions.md
+  - 00_system/sub_agents/packer/subagent_packer_instructions.md
+  - 00_system/sub_agents/checker/subagent_checker_instructions.md
   - 02_user_realm/RESEARCH_BLUEPRINT.md
   - 03_logs/user_requests.md
   - 03_logs/execution_runs.md
@@ -32,12 +32,12 @@ This is your operating playbook. Follow it step by step unless the user gives a 
 
 You are not a specialist sub-agent. You control the workflow around four specialists:
 
-| Sub-Agents     | Job                                               | SOUL                                          |
-| -------------- | ------------------------------------------------- | --------------------------------------------- |
-| Conceptualizer | Define what needs to be searched                  | `00_system/sub_agents/conceptualizer/SOUL.md` |
-| Navigator      | Find raw source material                          | `00_system/sub_agents/navigator/SOUL.md`      |
-| Packer         | Turn found material into a coherent report        | `00_system/sub_agents/packer/SOUL.md`         |
-| Checker        | Verify quotes, claims, paths, and index integrity | `00_system/sub_agents/checker/SOUL.md`        |
+| Sub-Agents     | Job                                               | SOUL                                                                         |
+| -------------- | ------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Conceptualizer | Define what needs to be searched                  | @00_system/sub_agents/conceptualizer/subagent_conceptualizer_instructions.md |
+| Navigator      | Find raw source material                          | @00_system/sub_agents/navigator/subagent_navigator_instructions.md           |
+| Packer         | Turn found material into a coherent report        | @00_system/sub_agents/packer/subagent_packer_instructions.md                 |
+| Checker        | Verify quotes, claims, paths, and index integrity | @00_system/sub_agents/checker/subagent_checker_instructions.md               |
 
 Your job is to:
 - log every request,
@@ -55,7 +55,7 @@ You must not:
 - certify claims without Checker,
 - run sub-agents that are not needed for the classified prompt,
 - edit the Root Vault,
-- edit `02_user_realm/writing/`.
+- edit @02_user_realm/writing/.
 
 ## 0.1 Operating Terms
 Use these terms exactly.
@@ -70,13 +70,13 @@ Use these terms exactly.
 | `source search` | Looking through the LLM Realm or Root Vault for material. Source search is Navigator work. |
 | `source-grounded answer` | An answer that depends on Root Vault, LLM Realm, or registered external source material. |
 | `evidence-bearing claim` | Any factual statement that says what a source contains, means, shows, proves, contradicts, or supports. Checker must verify these before final presentation. |
-| `durable report` | A Markdown report written to `05_agent_reports/` for reuse, traceability, or later verification. Durable reports are Packer work. |
+| `durable report` | A Markdown report written to @05_agent_reports/ for reuse, traceability, or later verification. Durable reports are Packer work. |
 | `raw evidence packet` | Navigator's handoff: source paths, index paths, locators, short raw excerpts if needed, evidence labels, and gaps. It is not a final answer. |
 | `verification` | Checking a quote, claim, locator, source path, fragment, index entry, or report against the Root Vault or a registered source. Verification is Checker work. |
 | `blocked` | You cannot proceed honestly because required setup, source access, permission, or information is missing. State the blocker and stop. |
 | `execution plan` | The lightweight task schedule for a routed request: task IDs, owner, dependencies, retry policy, timeout, output budget, and status. |
 | `task status` | One of `pending`, `ready`, `running`, `completed`, `partial`, `failed`, `blocked`, or `skipped`. |
-| `checkpoint` | A durable intermediate note in `05_agent_reports/` that preserves completed task outputs, pending tasks, gaps, and resume instructions. |
+| `checkpoint` | A durable intermediate note in @05_agent_reports/ that preserves completed task outputs, pending tasks, gaps, and resume instructions. |
 | `partial result` | A truthful output where some requested branches failed or remain unresolved, while completed branches are still useful and clearly labeled. |
 
 ## 1. Core Model
@@ -99,68 +99,68 @@ Every .md file in the repo and what it is for.
 ### Root
 | File | What it is |
 |---|---|
-| `AGENTS.md` | This playbook — orchestrator operating contract |
-| `README.md` | Human-facing project overview and setup instructions |
-| `GLOSSARY.md` | Shared vocabulary: agent, evidence level, concept index, etc. |
+| @AGENTS.md | This playbook — orchestrator operating contract |
+| @README.md | Human-facing project overview and setup instructions |
+| @GLOSSARY.md | Shared vocabulary: agent, evidence level, concept index, etc. |
 
 ### `.github/`
 | File | What it is |
 |---|---|
-| `.github/copilot-instructions.md` | Copilot integration — tells the agent to read AGENTS.md and the config |
+| @.github/copilot-instructions.md | Copilot integration — tells the agent to read @AGENTS.md and the config |
 
 ### `00_system/instructions/`
 | File | What it is |
 |---|---|
-| `REALM_CONFIGURATION.md` | Realm-wide config: Root Vault path, source policy, protected paths |
-| `SYSTEM_ARCHITECTURE_MAP.md` | Repo-wide architecture and data-flow diagrams |
-| `PROCESS_ROUTER.md` | Prompt classification logic and route table |
-| `ONBOARDING.md` | Translates user setup answers into concrete Realm configuration |
-| `STARTUP.md` | Converts the startup draft into an initial index and smoke-tests retrieval |
+| @REALM_CONFIGURATION.md | Realm-wide config: Root Vault path, source policy, protected paths |
+| @SYSTEM_ARCHITECTURE_MAP.md | Repo-wide architecture and data-flow diagrams |
+| @PROCESS_ROUTER.md | Prompt classification logic and route table |
+| @ONBOARDING.md | Translates user setup answers into concrete Realm configuration |
+| @STARTUP.md | Converts the startup draft into an initial index and smoke-tests retrieval |
 
 ### `00_system/sub_agents/`
 | File | What it is |
 |---|---|
-| `conceptualizer/SOUL.md` | Conceptualizer spec — translates requests into search concepts and routes |
-| `navigator/SOUL.md` | Navigator spec — finds material in Realm and Root Vault, produces evidence packets |
-| `packer/SOUL.md` | Packer spec — turns retrieved material into reports and structured answers |
-| `checker/SOUL.md` | Checker spec — verifies claims, quotes, paths, and indexes against the Root Vault |
+| @conceptualizer/subagent_conceptualizer_instructions.md | Conceptualizer spec — translates requests into search concepts and routes |
+| @navigator/subagent_navigator_instructions.md | Navigator spec — finds material in Realm and Root Vault, produces evidence packets |
+| @packer/subagent_packer_instructions.md | Packer spec — turns retrieved material into reports and structured answers |
+| @checker/subagent_checker_instructions.md | Checker spec — verifies claims, quotes, paths, and indexes against the Root Vault |
 
 ### `00_system/templates/`
 | File | What it is |
 |---|---|
-| `STARTUP_REPORT_TEMPLATE.md` | Template for the structured output written at startup completion |
+| @STARTUP_REPORT_TEMPLATE.md | Template for the structured output written at startup completion |
 
 ### `01_llm_realm/`
 | File | What it is |
 |---|---|
-| `00_realm_index.md` | Master index of the LLM Realm — maps all retrieval layers |
-| `00_root_mirror/FOLDER_INDEX_TEMPLATE.md` | Template for folder mirror index files that map Root Vault directories |
-| `01_metadata/HEADER_TEMPLATE.md` | Canonical YAML header schema for all framework .md files |
-| `03_concept_indexes/CONCEPT_INDEX_TEMPLATE.md` | Template for thematic concept indexes |
-| `04_evidence_fragments/EVIDENCE_FRAGMENT_TEMPLATE.md` | Template for reusable evidence excerpts with source paths and tags |
+| @00_realm_index.md | Master index of the LLM Realm — maps all retrieval layers |
+| @00_root_mirror/FOLDER_INDEX_TEMPLATE.md | Template for folder mirror index files that map Root Vault directories |
+| @01_metadata/HEADER_TEMPLATE.md | Canonical YAML header schema for all framework .md files |
+| @03_concept_indexes/CONCEPT_INDEX_TEMPLATE.md | Template for thematic concept indexes |
+| @04_evidence_fragments/EVIDENCE_FRAGMENT_TEMPLATE.md | Template for reusable evidence excerpts with source paths and tags |
 
 ### `02_user_realm/`
 | File | What it is |
 |---|---|
-| `RESEARCH_BLUEPRINT.md` | Research scope, questions, corpus, evidence standards, and direction |
+| @RESEARCH_BLUEPRINT.md | Research scope, questions, corpus, evidence standards, and direction |
 
 ### `03_logs/`
 | File | What it is |
 |---|---|
-| `user_requests.md` | Every user prompt logged as a routing row |
-| `execution_runs.md` | Non-linear or failure-prone routed runs (retries, timeouts, checkpoints) |
-| `source_intake_log.md` | Tracks new Root Vault batches and retained external sources |
-| `external_queries.md` | Records explicitly authorized external source use |
-| `structured_research_needs/STRUCTURED_RESEARCH_NEED_TEMPLATE.md` | Shape of a reusable search plan entry |
-| `research_tendencies/RESEARCH_NEED_AGGREGATOR_TEMPLATE.md` | Accumulates research needs, detects repeated themes |
+| @user_requests.md | Every user prompt logged as a routing row |
+| @execution_runs.md | Non-linear or failure-prone routed runs (retries, timeouts, checkpoints) |
+| @source_intake_log.md | Tracks new Root Vault batches and retained external sources |
+| @external_queries.md | Records explicitly authorized external source use |
+| @structured_research_needs/STRUCTURED_RESEARCH_NEED_TEMPLATE.md | Shape of a reusable search plan entry |
+| @research_tendencies/RESEARCH_NEED_AGGREGATOR_TEMPLATE.md | Accumulates research needs, detects repeated themes |
 
 ## 2.1 First Read
 At the start of a session or after context loss, read:
 
-1. `AGENTS.md`
-2. `00_system/instructions/REALM_CONFIGURATION.md`
-3. `00_system/instructions/SYSTEM_ARCHITECTURE_MAP.md`
-4. `00_system/instructions/PROCESS_ROUTER.md`
+1. @AGENTS.md
+2. @00_system/instructions/REALM_CONFIGURATION.md
+3. @00_system/instructions/SYSTEM_ARCHITECTURE_MAP.md
+4. @00_system/instructions/PROCESS_ROUTER.md
 
 If the task requires a sub-agent, read that sub-agent's SOUL before doing the sub-agent work.
 
@@ -170,7 +170,7 @@ For every user prompt, do this in order.
 ### Step 1 - Check The Startup Gate
 Before source-grounded work, inspect setup status if it is not already known.
 
-If `00_system/instructions/REALM_CONFIGURATION.md` or `02_user_realm/RESEARCH_BLUEPRINT.md` contains required placeholders such as `[path]`, `[project name]`, `[project description]`, or `setup_status: cli_started`, ordinary source work is blocked.
+If @00_system/instructions/REALM_CONFIGURATION.md or @02_user_realm/RESEARCH_BLUEPRINT.md contains required placeholders such as `[path]`, `[project name]`, `[project description]`, or `setup_status: cli_started`, ordinary source work is blocked.
 
 If the user asks to start or set up the Realm:
 
@@ -192,7 +192,7 @@ offer to start the Realm
 Do not map, index, answer from sources, or ingest new material before the startup gate is satisfied.
 
 ### Step 2 - Log The Request
-Add one short row to `03_logs/user_requests.md`.
+Add one short row to @03_logs/user_requests.md.
 
 Use this format:
 
@@ -232,11 +232,11 @@ Use this table. The `Route` column is the exact execution path you must run for 
 | `verification` | log -> Checker -> answer |
 | `index_maintenance` | log -> Conceptualizer if scope is unclear -> Navigator if search is needed -> Checker -> answer |
 | `source_intake` | log -> Navigator -> Checker -> answer |
-| `startup` | log -> `00_system/instructions/STARTUP.md` -> `00_system/instructions/ONBOARDING.md` -> answer |
+| `startup` | log -> @00_system/instructions/STARTUP.md -> @00_system/instructions/ONBOARDING.md -> answer |
 
-Route note — `synthesis_report`: skip Conceptualizer and Navigator when evidence packets already exist. Use `Packer -> Checker` directly (see `00_system/instructions/PROCESS_ROUTER.md` route table).
+Route note — `synthesis_report`: skip Conceptualizer and Navigator when evidence packets already exist. Use `Packer -> Checker` directly (see @00_system/instructions/PROCESS_ROUTER.md route table).
 
-For non-fast routes, create a minimal execution plan before calling specialists. Keep it inline unless the route has multiple branches, retries, timeouts, checkpoints, or partial results; then add a row to `03_logs/execution_runs.md`.
+For non-fast routes, create a minimal execution plan before calling specialists. Keep it inline unless the route has multiple branches, retries, timeouts, checkpoints, or partial results; then add a row to @03_logs/execution_runs.md.
 
 Execution plan fields:
 - `task_id`
@@ -280,8 +280,8 @@ Execution controls:
 - Timeouts: if the environment supports command or task timeouts, use them. If it does not, use elapsed-time judgment and stop or retry tasks that have clearly exceeded the route's scope.
 - Output budgets: constrain specialist output by requested depth. Use `brief`, `standard`, or `deep` unless the runtime exposes numeric token budgets.
 - Partial results: when a branch fails but other branches are usable, continue only if the final answer can clearly separate completed, partial, and unresolved items.
-- Checkpoints: create a checkpoint in `05_agent_reports/` when a route has more than three branches, has been interrupted, or would lose useful work if stopped.
-- Monitoring: record retries, timeouts, checkpoints, and partial final states in `03_logs/execution_runs.md` when any of them occur.
+- Checkpoints: create a checkpoint in @05_agent_reports/ when a route has more than three branches, has been interrupted, or would lose useful work if stopped.
+- Monitoring: record retries, timeouts, checkpoints, and partial final states in @03_logs/execution_runs.md when any of them occur.
 
 ### Step 6 - Close The Request
 Before final response:
@@ -316,7 +316,7 @@ Call Conceptualizer when the request needs conceptual decomposition, search voca
 Before you do Conceptualizer work, read:
 
 ```txt
-00_system/sub_agents/conceptualizer/SOUL.md
+00_system/sub_agents/conceptualizer/subagent_conceptualizer_instructions.md
 ```
 
 Give Conceptualizer:
@@ -341,7 +341,7 @@ Call Navigator when material must be found, located, mapped, or packeted. "Call"
 Before you do Navigator work, read:
 
 ```txt
-00_system/sub_agents/navigator/SOUL.md
+00_system/sub_agents/navigator/subagent_navigator_instructions.md
 ```
 
 Give Navigator:
@@ -351,10 +351,10 @@ Give Navigator:
 - search constraints.
 
 Search in this order:
-1. `01_llm_realm/00_realm_index.md`
-2. `01_llm_realm/00_root_mirror/`
-3. `01_llm_realm/03_concept_indexes/`
-4. `01_llm_realm/04_evidence_fragments/`
+1. @01_llm_realm/00_realm_index.md
+2. @01_llm_realm/00_root_mirror/
+3. @01_llm_realm/03_concept_indexes/
+4. @01_llm_realm/04_evidence_fragments/
 5. Root Vault only when needed
 
 Produce:
@@ -375,7 +375,7 @@ Call Packer when retrieved material must become a coherent report or structured 
 Before you do Packer work, read:
 
 ```txt
-00_system/sub_agents/packer/SOUL.md
+00_system/sub_agents/packer/subagent_packer_instructions.md
 ```
 
 Give Packer:
@@ -385,7 +385,7 @@ Give Packer:
 - output format requested by user.
 
 Produce:
-- report in `05_agent_reports/`,
+- report in @05_agent_reports/,
 - `checker_status: pending`,
 - explicit Checker instructions listing quotes, claims, and paths to verify.
 
@@ -403,7 +403,7 @@ Checker can be called alone.
 Before you do Checker work, read:
 
 ```txt
-00_system/sub_agents/checker/SOUL.md
+00_system/sub_agents/checker/subagent_checker_instructions.md
 ```
 
 Give Checker:
@@ -446,18 +446,18 @@ Rules:
 - final factual claims need a Root Vault or registered source path,
 - L2 material must be checked by Checker before being reported as evidence,
 - external sources require permission from configuration or explicit user request,
-- log external source use in `03_logs/external_queries.md`,
-- retained external sources must be logged in `03_logs/source_intake_log.md`.
+- log external source use in @03_logs/external_queries.md,
+- retained external sources must be logged in @03_logs/source_intake_log.md.
 
 ## 8. Write Boundaries
 | Path | Rule |
 |---|---|
 | Root Vault | read-only, never edit |
-| `02_user_realm/writing/` | read-only, never edit |
-| `00_system/` | system architecture, router, setup, SOUL files |
-| `01_llm_realm/` | folder mirror indexes, fragments, concept indexes, archive |
-| `03_logs/` | request log, source intake, external queries, structured needs |
-| `05_agent_reports/` | Packer reports, Checker notes, maintenance reports |
+| @02_user_realm/writing/ | read-only, never edit |
+| @00_system/ | system architecture, router, setup, SOUL files |
+| @01_llm_realm/ | folder mirror indexes, fragments, concept indexes, archive |
+| @03_logs/ | request log, source intake, external queries, structured needs |
+| @05_agent_reports/ | Packer reports, Checker notes, maintenance reports |
 
 Archive outdated Realm material instead of deleting it.
 

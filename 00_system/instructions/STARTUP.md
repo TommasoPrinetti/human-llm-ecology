@@ -41,13 +41,13 @@ This file subsumes the old initial-indexing protocol. Use it for startup, first 
 ## Required Startup Inputs
 Read:
 
-1. `AGENTS.md`
-2. `00_system/instructions/REALM_CONFIGURATION.md`
-3. `00_system/instructions/SYSTEM_ARCHITECTURE_MAP.md`
-4. `00_system/instructions/PROCESS_ROUTER.md`
-5. `02_user_realm/RESEARCH_BLUEPRINT.md`
-6. `01_llm_realm/01_metadata/HEADER_TEMPLATE.md`
-7. `01_llm_realm/00_root_mirror/FOLDER_INDEX_TEMPLATE.md`
+1. @AGENTS.md
+2. @00_system/instructions/REALM_CONFIGURATION.md
+3. @00_system/instructions/SYSTEM_ARCHITECTURE_MAP.md
+4. @00_system/instructions/PROCESS_ROUTER.md
+5. @02_user_realm/RESEARCH_BLUEPRINT.md
+6. @01_llm_realm/01_metadata/HEADER_TEMPLATE.md
+7. @01_llm_realm/00_root_mirror/FOLDER_INDEX_TEMPLATE.md
 
 ## Step 1 - Verify Setup
 Fill or verify:
@@ -80,7 +80,7 @@ For every Root Vault folder that contains retrievable material, create a matchin
 
 Procedure per folder:
 1. Create the directory under `01_llm_realm/00_root_mirror/` if it does not already exist
-2. Write `INDEX.md` using `01_llm_realm/00_root_mirror/FOLDER_INDEX_TEMPLATE.md`
+2. Write `INDEX.md` using @01_llm_realm/00_root_mirror/FOLDER_INDEX_TEMPLATE.md
 3. Fill YAML frontmatter with the grep terms you collected during the survey (source_types, modalities, topics, keywords, people, places, date_range)
 4. Write the body — exactly the 5 sections from Step 5
 5. Set `index_status: draft` initially
@@ -153,12 +153,12 @@ Do not summarize every file. Summarize the folder as a search surface.
 Create deeper folder indexes, metadata, evidence fragments, and concept indexes only when they improve retrieval or reuse.
 
 Use:
-- `01_llm_realm/00_root_mirror/` nested `INDEX.md` files for source batches needing deeper navigation.
-- `01_llm_realm/04_evidence_fragments/` for reusable quotes or precise observations.
-- `01_llm_realm/03_concept_indexes/` when several fragments share a concept.
+- @01_llm_realm/00_root_mirror/ nested `INDEX.md` files for source batches needing deeper navigation.
+- @01_llm_realm/04_evidence_fragments/ for reusable quotes or precise observations.
+- @01_llm_realm/03_concept_indexes/ when several fragments share a concept.
 
 ## Step 7 - Update Master Index
-Update `01_llm_realm/00_realm_index.md` with:
+Update @01_llm_realm/00_realm_index.md with:
 - Root Vault path,
 - mirror index coverage,
 - mapped top-level folders,
@@ -178,7 +178,7 @@ Before reporting startup complete, run one retrieval smoke test:
 Startup is complete only if the LLM Realm can lead back to the Root Vault.
 
 ## Startup Output
-Write one report in `05_agent_reports/` with:
+Write one report in @05_agent_reports/ with:
 - configuration status,
 - Root Vault path verified,
 - folder mirror coverage,

@@ -13,7 +13,7 @@ updated: 2026-05-27
 
 # Startup Report Template
 
-Use this structure for the final response after `Read AGENTS.md and start the Realm`.
+Use this structure for the final response after `Read @AGENTS.md and start the Realm`.
 
 ## Outcome
 [One or two sentences: setup translated, Root Vault verified, first indexing status.]
@@ -23,7 +23,7 @@ Use this structure for the final response after `Read AGENTS.md and start the Re
 - [done / blocked] Root Vault verified
 - [done / blocked] Blueprint/config translated
 - [done / blocked] Translation audit completed
-- [done / blocked] Folder mirror indexes created in `01_llm_realm/00_root_mirror/`
+- [done / blocked] Folder mirror indexes created in @01_llm_realm/00_root_mirror/
 - [done / blocked] Grep/Checker smoke test completed
 - [done / blocked] Initial indexing pass completed
 

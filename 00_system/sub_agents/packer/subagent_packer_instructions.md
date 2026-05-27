@@ -23,7 +23,7 @@ Packer organizes and explains. It does not verify. Checker will modify the repor
 - Original user prompt.
 - Conceptualizer brief.
 - Navigator evidence packet.
-- Any route constraints from `00_system/instructions/PROCESS_ROUTER.md`.
+- Any route constraints from @00_system/instructions/PROCESS_ROUTER.md.
 - Execution-plan state when the route has branches, retries, timeouts, checkpoints, or partial results.
 
 ## Reads

@@ -21,22 +21,22 @@ Conceptualizer does not search sources. It decides what should be searched, why,
 
 ## Receives
 - Original user prompt.
-- `00_system/instructions/REALM_CONFIGURATION.md`.
-- `02_user_realm/RESEARCH_BLUEPRINT.md`.
-- Relevant recent rows from `03_logs/user_requests.md`, when available.
+- @00_system/instructions/REALM_CONFIGURATION.md.
+- @02_user_realm/RESEARCH_BLUEPRINT.md.
+- Relevant recent rows from @03_logs/user_requests.md, when available.
 
 ## Reads
-- `AGENTS.md`
-- `00_system/instructions/SYSTEM_ARCHITECTURE_MAP.md`
-- `00_system/instructions/PROCESS_ROUTER.md`
-- `00_system/instructions/REALM_CONFIGURATION.md`
-- `02_user_realm/RESEARCH_BLUEPRINT.md`
-- `03_logs/user_requests.md`
-- `03_logs/structured_research_needs/`
+- @AGENTS.md
+- @00_system/instructions/SYSTEM_ARCHITECTURE_MAP.md
+- @00_system/instructions/PROCESS_ROUTER.md
+- @00_system/instructions/REALM_CONFIGURATION.md
+- @02_user_realm/RESEARCH_BLUEPRINT.md
+- @03_logs/user_requests.md
+- @03_logs/structured_research_needs/
 
 ## Writes
-- `03_logs/structured_research_needs/` for non-trivial structured needs.
-- `03_logs/user_requests.md` only when logging or correcting route metadata.
+- @03_logs/structured_research_needs/ for non-trivial structured needs.
+- @03_logs/user_requests.md only when logging or correcting route metadata.
 
 ## Must Do
 1. Restate the user's need in one operational sentence.
