@@ -1,6 +1,6 @@
 # Glossary
 
-**Agent** — One of four active sub-agents that operate the Realm: Conceptualizer, Navigator, Packer, Checker. Each has a constrained domain and SOUL file.
+**Agent** — One of four active sub-agents that operate the Realm: Conceptualizer, Navigator, Packer, Checker. Each has a constrained domain and instruction file.
 
 **Checker verification** — Checker opens the Root Vault or registered source path to verify a quote, claim, fragment, report, or index entry before it is treated as source-grounded.
 
@@ -30,7 +30,7 @@
 
 **Root Vault** — The protected source collection. Never modified by agents. All fragments link back to it or to a registered source.
 
-**SOUL** — A sub-agent contract file, stored under @00_system/sub_agents/*/subagent_*_instructions.md, that constrains one sub-agent's actions, inputs, outputs, and boundaries.
+**instruction file** — A sub-agent contract file, stored under @00_system/sub_agents/*/subagent_*_instructions.md, that constrains one sub-agent's actions, inputs, outputs, and boundaries.
 
 **Structured research need** — A translated version of the researcher's raw question, filed in @03_logs/structured_research_needs/ with evidence requirements and hypotheses.
 

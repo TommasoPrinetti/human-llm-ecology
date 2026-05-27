@@ -32,7 +32,7 @@ This is your operating playbook. Follow it step by step unless the user gives a 
 
 You are not a specialist sub-agent. You control the workflow around four specialists:
 
-| Sub-Agents     | Job                                               | SOUL                                                                         |
+| Sub-Agents     | Job                                               | Instruction File                                                             |
 | -------------- | ------------------------------------------------- | ---------------------------------------------------------------------------- |
 | Conceptualizer | Define what needs to be searched                  | @00_system/sub_agents/conceptualizer/subagent_conceptualizer_instructions.md |
 | Navigator      | Find raw source material                          | @00_system/sub_agents/navigator/subagent_navigator_instructions.md           |
@@ -43,7 +43,7 @@ Your job is to:
 - log every request,
 - classify the prompt,
 - invoke the correct sequence of sub-agents for the classified prompt,
-- read only the specialist SOUL files needed for that sequence,
+- read only the specialist instruction files needed for that sequence,
 - pass outputs forward without mixing specialist responsibilities,
 - stop when the user's request is satisfied,
 - run Checker before finalizing evidence-bearing claims,
@@ -60,24 +60,24 @@ You must not:
 ## 0.1 Operating Terms
 Use these terms exactly.
 
-| Term | Meaning |
-|---|---|
-| `sub-agent sequence` | The ordered list of sub-agents to invoke for the prompt. Example: `Conceptualizer -> Navigator -> Packer -> Checker`. |
-| `correct sequence` | The sequence assigned to the prompt class in the route table. Use exactly that sequence unless a listed condition says a step is optional. |
-| `route` | The full execution path: log request, invoke the correct sub-agent sequence, then answer. Example: `log -> Conceptualizer -> Navigator -> Packer -> Checker -> answer`. |
-| `call a specialist` | Read that specialist's SOUL file, perform only that specialist's job, and produce that specialist's required output. |
-| `SOUL` | The instruction file that defines one specialist's allowed inputs, actions, outputs, and prohibitions. |
-| `source search` | Looking through the LLM Realm or Root Vault for material. Source search is Navigator work. |
-| `source-grounded answer` | An answer that depends on Root Vault, LLM Realm, or registered external source material. |
-| `evidence-bearing claim` | Any factual statement that says what a source contains, means, shows, proves, contradicts, or supports. Checker must verify these before final presentation. |
-| `durable report` | A Markdown report written to @05_agent_reports/ for reuse, traceability, or later verification. Durable reports are Packer work. |
-| `raw evidence packet` | Navigator's handoff: source paths, index paths, locators, short raw excerpts if needed, evidence labels, and gaps. It is not a final answer. |
-| `verification` | Checking a quote, claim, locator, source path, fragment, index entry, or report against the Root Vault or a registered source. Verification is Checker work. |
-| `blocked` | You cannot proceed honestly because required setup, source access, permission, or information is missing. State the blocker and stop. |
-| `execution plan` | The lightweight task schedule for a routed request: task IDs, owner, dependencies, retry policy, timeout, output budget, and status. |
-| `task status` | One of `pending`, `ready`, `running`, `completed`, `partial`, `failed`, `blocked`, or `skipped`. |
-| `checkpoint` | A durable intermediate note in @05_agent_reports/ that preserves completed task outputs, pending tasks, gaps, and resume instructions. |
-| `partial result` | A truthful output where some requested branches failed or remain unresolved, while completed branches are still useful and clearly labeled. |
+| Term                     | Meaning                                                                                                                                                                 |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sub-agent sequence`     | The ordered list of sub-agents to invoke for the prompt. Example: `Conceptualizer -> Navigator -> Packer -> Checker`.                                                   |
+| `correct sequence`       | The sequence assigned to the prompt class in the route table. Use exactly that sequence unless a listed condition says a step is optional.                              |
+| `route`                  | The full execution path: log request, invoke the correct sub-agent sequence, then answer. Example: `log -> Conceptualizer -> Navigator -> Packer -> Checker -> answer`. |
+| `call a specialist`      | Read that specialist's instruction file, perform only that specialist's job, and produce that specialist's required output.                                             |
+| `instruction file`       | The instruction file (`subagent_*_instructions.md`) that defines one specialist's allowed inputs, actions, outputs, and prohibitions.                                   |
+| `source search`          | Looking through the LLM Realm or Root Vault for material. Source search is Navigator work.                                                                              |
+| `source-grounded answer` | An answer that depends on Root Vault, LLM Realm, or registered external source material.                                                                                |
+| `evidence-bearing claim` | Any factual statement that says what a source contains, means, shows, proves, contradicts, or supports. Checker must verify these before final presentation.            |
+| `durable report`         | A Markdown report written to @05_agent_reports/ for reuse, traceability, or later verification. Durable reports are Packer work.                                        |
+| `raw evidence packet`    | Navigator's handoff: source paths, index paths, locators, short raw excerpts if needed, evidence labels, and gaps. It is not a final answer.                            |
+| `verification`           | Checking a quote, claim, locator, source path, fragment, index entry, or report against the Root Vault or a registered source. Verification is Checker work.            |
+| `blocked`                | You cannot proceed honestly because required setup, source access, permission, or information is missing. State the blocker and stop.                                   |
+| `execution plan`         | The lightweight task schedule for a routed request: task IDs, owner, dependencies, retry policy, timeout, output budget, and status.                                    |
+| `task status`            | One of `pending`, `ready`, `running`, `completed`, `partial`, `failed`, `blocked`, or `skipped`.                                                                        |
+| `checkpoint`             | A durable intermediate note in @05_agent_reports/ that preserves completed task outputs, pending tasks, gaps, and resume instructions.                                  |
+| `partial result`         | A truthful output where some requested branches failed or remain unresolved, while completed branches are still useful and clearly labeled.                             |
 
 ## 1. Core Model
 LLM Realm is a two-layer research system.
@@ -109,13 +109,13 @@ Every .md file in the repo and what it is for.
 | @.github/copilot-instructions.md | Copilot integration — tells the agent to read @AGENTS.md and the config |
 
 ### `00_system/instructions/`
-| File | What it is |
-|---|---|
-| @REALM_CONFIGURATION.md | Realm-wide config: Root Vault path, source policy, protected paths |
-| @SYSTEM_ARCHITECTURE_MAP.md | Repo-wide architecture and data-flow diagrams |
-| @PROCESS_ROUTER.md | Prompt classification logic and route table |
-| @ONBOARDING.md | Translates user setup answers into concrete Realm configuration |
-| @STARTUP.md | Converts the startup draft into an initial index and smoke-tests retrieval |
+| File                        | What it is                                                                 |
+| --------------------------- | -------------------------------------------------------------------------- |
+| @REALM_CONFIGURATION.md     | Realm-wide config: Root Vault path, source policy, protected paths         |
+| @SYSTEM_ARCHITECTURE_MAP.md | Repo-wide architecture and data-flow diagrams                              |
+| @PROCESS_ROUTER.md          | Prompt classification logic and route table                                |
+| @ONBOARDING.md              | Translates user setup answers into concrete Realm configuration            |
+| @STARTUP.md                 | Converts the startup draft into an initial index and smoke-tests retrieval |
 
 ### `00_system/sub_agents/`
 | File | What it is |
@@ -162,7 +162,7 @@ At the start of a session or after context loss, read:
 3. @00_system/instructions/SYSTEM_ARCHITECTURE_MAP.md
 4. @00_system/instructions/PROCESS_ROUTER.md
 
-If the task requires a sub-agent, read that sub-agent's SOUL before doing the sub-agent work.
+If the task requires a sub-agent, read that sub-agent's instruction file before doing the sub-agent work.
 
 ## 3. Universal Request Loop
 For every user prompt, do this in order.
@@ -222,17 +222,17 @@ If two classes apply, choose the one with the stricter evidence requirement. A b
 ### Step 4 - Invoke The Correct Sub-Agent Sequence
 Use this table. The `Route` column is the exact execution path you must run for that prompt class.
 
-| Class | Route |
-|---|---|
-| `fast_path` | log -> answer |
-| `clarify_search` | log -> Conceptualizer -> answer |
-| `find_material` | log -> Conceptualizer -> Navigator -> answer |
-| `evidence_answer` | log -> Conceptualizer -> Navigator -> Packer -> Checker -> answer |
-| `synthesis_report` | log -> Conceptualizer -> Navigator -> Packer -> Checker -> answer |
-| `verification` | log -> Checker -> answer |
+| Class               | Route                                                                                           |
+| ------------------- | ----------------------------------------------------------------------------------------------- |
+| `fast_path`         | log -> answer                                                                                   |
+| `clarify_search`    | log -> Conceptualizer -> answer                                                                 |
+| `find_material`     | log -> Conceptualizer -> Navigator -> answer                                                    |
+| `evidence_answer`   | log -> Conceptualizer -> Navigator -> Packer -> Checker -> answer                               |
+| `synthesis_report`  | log -> Conceptualizer -> Navigator -> Packer -> Checker -> answer                               |
+| `verification`      | log -> Checker -> answer                                                                        |
 | `index_maintenance` | log -> Conceptualizer if scope is unclear -> Navigator if search is needed -> Checker -> answer |
-| `source_intake` | log -> Navigator -> Checker -> answer |
-| `startup` | log -> @00_system/instructions/STARTUP.md -> @00_system/instructions/ONBOARDING.md -> answer |
+| `source_intake`     | log -> Navigator -> Checker -> answer                                                           |
+| `startup`           | log -> @00_system/instructions/STARTUP.md -> @00_system/instructions/ONBOARDING.md -> answer    |
 
 Route note — `synthesis_report`: skip Conceptualizer and Navigator when evidence packets already exist. Use `Packer -> Checker` directly (see @00_system/instructions/PROCESS_ROUTER.md route table).
 
@@ -251,7 +251,7 @@ Execution plan fields:
 Use the smallest useful execution plan. A normal linear route can stay linear. Fan out only when Conceptualizer identifies independent subtasks.
 
 ### Step 5 - Execute The Sub-Agent Sequence
-Read each required SOUL immediately before doing that specialist's work.
+Read each required instruction file immediately before doing that specialist's work.
 
 The tool name for spawning sub-agents depends on the CLI environment:
 
@@ -261,7 +261,7 @@ The tool name for spawning sub-agents depends on the CLI environment:
 | Claude Code | `Task` | built-in | built-in todo |
 | Codex | `task` | built-in | built-in todo |
 
-Use the environment's spawn tool to invoke each sub-agent in the selected sequence, passing the original user prompt and all prior outputs to the next sub-agent. If the environment does not expose a spawn tool, simulate the call by reading the relevant SOUL file and performing only that sub-agent's work in the current session.
+Use the environment's spawn tool to invoke each sub-agent in the selected sequence, passing the original user prompt and all prior outputs to the next sub-agent. If the environment does not expose a spawn tool, simulate the call by reading the relevant instruction file and performing only that sub-agent's work in the current session.
 
 Handoff rule:
 ```txt
@@ -311,7 +311,7 @@ Fast path still requires logging.
 ## 5. Specialist Call Playbooks
 
 ### 5.1 Conceptualizer
-Call Conceptualizer when the request needs conceptual decomposition, search vocabulary, source targeting, or sequence planning. "Call" means read the SOUL, do only Conceptualizer work, and produce the SOUL-defined output.
+Call Conceptualizer when the request needs conceptual decomposition, search vocabulary, source targeting, or sequence planning. "Call" means read the instruction file, do only Conceptualizer work, and produce the instruction-defined output.
 
 Before you do Conceptualizer work, read:
 
@@ -336,7 +336,7 @@ Stop after Conceptualizer if:
 Continue to Navigator if material must be found in the LLM Realm or Root Vault.
 
 ### 5.2 Navigator
-Call Navigator when material must be found, located, mapped, or packeted. "Call" means read the SOUL, do only Navigator work, and produce the SOUL-defined output.
+Call Navigator when material must be found, located, mapped, or packeted. "Call" means read the instruction file, do only Navigator work, and produce the instruction-defined output.
 
 Before you do Navigator work, read:
 
@@ -370,7 +370,7 @@ Continue to Packer if the user needs an answer, report, comparison, or synthesis
 Continue to Checker if source paths, quotes, fragments, or index entries must be verified or repaired.
 
 ### 5.3 Packer
-Call Packer when retrieved material must become a coherent report or structured answer. "Call" means read the SOUL, do only Packer work, and produce the SOUL-defined output.
+Call Packer when retrieved material must become a coherent report or structured answer. "Call" means read the instruction file, do only Packer work, and produce the instruction-defined output.
 
 Before you do Packer work, read:
 
@@ -396,7 +396,7 @@ Stop after Packer only if:
 Continue to Checker if the report contains quotes, source claims, evidence judgments, or source-path references.
 
 ### 5.4 Checker
-Call Checker when quotes, claims, citations, source paths, reports, fragments, or indexes must be verified. "Call" means read the SOUL, do only Checker work, and produce the SOUL-defined output.
+Call Checker when quotes, claims, citations, source paths, reports, fragments, or indexes must be verified. "Call" means read the instruction file, do only Checker work, and produce the instruction-defined output.
 
 Checker can be called alone.
 
@@ -454,7 +454,7 @@ Rules:
 |---|---|
 | Root Vault | read-only, never edit |
 | @02_user_realm/writing/ | read-only, never edit |
-| @00_system/ | system architecture, router, setup, SOUL files |
+| @00_system/ | system architecture, router, setup, instruction files |
 | @01_llm_realm/ | folder mirror indexes, fragments, concept indexes, archive |
 | @03_logs/ | request log, source intake, external queries, structured needs |
 | @05_agent_reports/ | Packer reports, Checker notes, maintenance reports |

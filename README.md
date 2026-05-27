@@ -47,7 +47,7 @@ The check passes only when required placeholders are gone, `setup_status` is set
 | [`AGENTS.md`](./AGENTS.md) | Main operating contract for autonomous agents |
 | [`GLOSSARY.md`](./GLOSSARY.md) | Shared vocabulary for the framework |
 | [`00_system/instructions/`](./00_system/instructions/) | Startup, routing, architecture, and configuration rules |
-| [`00_system/sub_agents/`](./00_system/sub_agents/) | SOUL contracts for Conceptualizer, Navigator, Packer, and Checker |
+| [`00_system/sub_agents/`](./00_system/sub_agents/) | Sub-agent instruction files for Conceptualizer, Navigator, Packer, and Checker |
 | [`00_system/templates/`](./00_system/templates/) | Report templates used during startup and agent work |
 | [`01_llm_realm/`](./01_llm_realm/) | Empty retrieval scaffold populated during startup |
 | [`02_user_realm/`](./02_user_realm/) | Project blueprint and protected writing area |

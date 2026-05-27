@@ -17,7 +17,7 @@ updated: 2026-05-27
 
 # Process Router
 
-Use this file to choose the operational route for a user prompt. The home session is the orchestrator and uses the relevant sub-agent SOUL file for execution details.
+Use this file to choose the operational route for a user prompt. The home session is the orchestrator and uses the relevant sub-agent instruction file for execution details.
 
 ## Non-Negotiable
 - Root Vault is read-only. Never modify, reorganize, rename, or delete source files.

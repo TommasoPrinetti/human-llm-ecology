@@ -12,7 +12,7 @@ created: 2026-05-26
 updated: 2026-05-27
 ---
 
-# Navigator SOUL
+# Navigator
 
 ## Single Task
 Find source material.

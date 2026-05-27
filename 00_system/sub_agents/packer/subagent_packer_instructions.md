@@ -12,7 +12,7 @@ created: 2026-05-26
 updated: 2026-05-27
 ---
 
-# Packer SOUL
+# Packer
 
 ## Single Task
 Turn retrieved material into a coherent report that answers the user's original request.

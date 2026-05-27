@@ -12,7 +12,7 @@ created: 2026-05-26
 updated: 2026-05-27
 ---
 
-# Conceptualizer SOUL
+# Conceptualizer
 
 ## Single Task
 Translate the user's request into a precise search need.
