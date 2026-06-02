@@ -58,6 +58,21 @@ ${line}" || lines="$line"
   echo "$lines"
 }
 
+normalize_path_input() {
+  local value="$1"
+
+  # Trim accidental leading/trailing whitespace and one pair of shell-style quotes.
+  value="${value#"${value%%[![:space:]]*}"}"
+  value="${value%"${value##*[![:space:]]}"}"
+  if [[ ${#value} -ge 2 ]]; then
+    if [[ "${value:0:1}" == "'" && "${value: -1}" == "'" ]] || [[ "${value:0:1}" == '"' && "${value: -1}" == '"' ]]; then
+      value="${value:1:${#value}-2}"
+    fi
+  fi
+
+  echo "$value"
+}
+
 select_menu() {
   local prompt="$1"
   shift
@@ -213,8 +228,13 @@ copy_root_vault() {
 
   printf '  %s %s\n' "${G}✦${RESET}" "${BOLD}Root vault cloned to${RESET} ${C}${dest_dir}${RESET}"
   printf '  %s %s\n' "${DIM}→${RESET}" "${copied} text files copied"
-  [[ "$skipped" -gt 0 ]] && printf '  %s %s\n' "${DIM}→${RESET}" "${skipped} files skipped (already exist)"
-  [[ "$binary_count" -gt 0 ]] && printf '  %s %s\n' "${DIM}→${RESET}" "${binary_count} non-text files (PDFs, images, etc.) left in original vault"
+  if [[ "$skipped" -gt 0 ]]; then
+    printf '  %s %s\n' "${DIM}→${RESET}" "${skipped} files skipped (already exist)"
+  fi
+  if [[ "$binary_count" -gt 0 ]]; then
+    printf '  %s %s\n' "${DIM}→${RESET}" "${binary_count} non-text files (PDFs, images, etc.) left in original vault"
+  fi
+  return 0
 }
 
 # ── overwrite check ─────────────────────────────────────────────────────────
@@ -284,6 +304,7 @@ main() {
   root_vault_path=""
   while [[ -z "$root_vault_path" ]]; do
     root_vault_path="$(ask "Root Vault path (absolute)" "" "e.g. /Users/name/Documents/my-sources")"
+    root_vault_path="$(normalize_path_input "$root_vault_path")"
     [[ -z "$root_vault_path" ]] && printf '  %s\n' "${R}Root Vault path is required.${RESET}" >&2
   done
 

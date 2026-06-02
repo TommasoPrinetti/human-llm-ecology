@@ -17,3 +17,5 @@ Short routing log for user prompts. Log the request before deciding whether to a
 
 | Date | Request summary | Route | Status | Output |
 |---|---|---|---|---|
+| 2026-06-02 | Diagnose onboarding Root Vault path not found | fast_path | done | Path exists; onboarding now strips wrapping quotes |
+| 2026-06-02 | Fix onboarding quoted-path handling and push | fast_path | done | Onboarding accepts quoted paths and preserves success after copy summary |
